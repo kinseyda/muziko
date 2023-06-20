@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 
 export default function ThemeSwitch() {
   const [theme, setTheme] = useState("light");
@@ -10,10 +11,14 @@ export default function ThemeSwitch() {
     document.querySelector("html")?.setAttribute("data-theme", theme);
   }, [theme]);
   return (
-    <label className="swap swap-rotate">
+    <label className="swap swap-rotate btn btn-ghost btn-circle">
       <input onClick={toggleTheme} type="checkbox" />
-      <div className="swap-on">DARKMODE</div>
-      <div className="swap-off">LIGHTMODE</div>
+      <div className="swap-on w-8">
+        <MoonIcon />
+      </div>
+      <div className="swap-off w-8">
+        <SunIcon />
+      </div>
     </label>
   );
 }
