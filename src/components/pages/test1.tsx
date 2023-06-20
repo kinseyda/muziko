@@ -5,12 +5,12 @@ import { RootState } from "../../store";
 import { useEffect, useState } from "react";
 
 export default function Test1() {
-  const firestoreDb = useSelector((state: RootState) => state.db);
+  const firestoreDb = useSelector((state: RootState) => state.firebase).db;
 
   const [testNumber, setTestNumber] = useState([]);
 
   const fetchPost = async () => {
-    await getDocs(collection(firestoreDb.db, "test")).then((querySnapshot) => {
+    await getDocs(collection(firestoreDb, "test")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         test: doc.data,

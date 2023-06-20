@@ -3,7 +3,7 @@ import { firebaseSlice } from "./firebaseslice";
 
 export const store = configureStore({
   reducer: {
-    db: firebaseSlice.reducer,
+    firebase: firebaseSlice.reducer,
   },
 });
 

@@ -7,6 +7,7 @@ import Login from "./components/pages/login/login";
 import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
 import Topic from "./components/pages/topic/topic";
+import ThemeSwitch from "./components/themeSwitch";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -22,6 +23,7 @@ const router = createHashRouter([
 export default function App() {
   return (
     <div className="App">
+      <ThemeSwitch></ThemeSwitch>
       <RouterProvider router={router} />
     </div>
   );

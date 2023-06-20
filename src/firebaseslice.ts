@@ -31,6 +31,6 @@ export const firebaseSlice = createSlice({
 export const { incrementByAmount } = firebaseSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.db.db;
+export const selectCount = (state: RootState) => state.firebase.db;
 
 export default firebaseSlice.reducer;
