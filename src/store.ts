@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { firebaseSlice } from "./firebaseslice";
+import { authSlice } from "./authslice";
 
 export const store = configureStore({
   reducer: {
-    firebase: firebaseSlice.reducer,
+    auth: authSlice.reducer,
   },
 });
 

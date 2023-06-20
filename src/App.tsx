@@ -8,6 +8,12 @@ import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
 import Topic from "./components/pages/topic/topic";
 import ThemeSwitch from "./components/themeSwitch";
+import { useSelector } from "react-redux";
+import { RootState, store } from "./store";
+import { useReducer } from "react";
+import { authSlice } from "./authslice";
+import { User } from "firebase/auth";
+import { auth } from "./firebase";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -21,6 +27,13 @@ const router = createHashRouter([
 ]);
 
 export default function App() {
+  auth.onAuthStateChanged((user: User | null) => {
+    if (user === null) {
+      store.dispatch(authSlice.actions.setLogin(undefined));
+    } else {
+      store.dispatch(authSlice.actions.setLogin({ email: user.email!! }));
+    }
+  });
   return (
     <div className="App">
       <ThemeSwitch></ThemeSwitch>

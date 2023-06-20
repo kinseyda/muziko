@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase";
 
 const fields: InputFields[] = [
   {
@@ -25,7 +26,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
   const navigate = useNavigate();
-  const auth = useSelector((state: RootState) => state.firebase).auth;
+
   const [loginState, setLoginState] = useState(fieldsState);
 
   const handleChange = (e: { target: { id: any; value: any } }) => {

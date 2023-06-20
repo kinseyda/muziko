@@ -2,6 +2,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 export default function Welcome() {
-  const auth = useSelector((state: RootState) => state.firebase).auth;
-  return <div>welcome {auth.currentUser?.email}</div>;
+  const user = useSelector((state: RootState) => state.auth).user;
+  return <div>welcome {user?.email}</div>;
 }

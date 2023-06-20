@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { RootState } from "../../store";
 import { useEffect, useState } from "react";
+import { db } from "../../firebase";
 
 export default function Test1() {
-  const firestoreDb = useSelector((state: RootState) => state.firebase).db;
 
   const [testNumber, setTestNumber] = useState([]);
 
   const fetchPost = async () => {
-    await getDocs(collection(firestoreDb, "test")).then((querySnapshot) => {
+    await getDocs(collection(db, "test")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         test: doc.data,
