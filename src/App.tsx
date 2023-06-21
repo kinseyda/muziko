@@ -12,6 +12,8 @@ import { authSlice } from "./authSlice";
 import { User } from "firebase/auth";
 import { auth } from "./firebase";
 import "./App.css";
+import { useEffect } from "react";
+import { themeChange } from "theme-change";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -32,6 +34,10 @@ export default function App() {
       store.dispatch(authSlice.actions.setLogin({ email: user.email!! }));
     }
   });
+  useEffect(() => {
+    themeChange(false);
+    // 👆 false parameter is required for react project
+  }, []);
   return (
     <div className="App">
       <div id="page-container">
