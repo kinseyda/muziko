@@ -7,13 +7,11 @@ import Login from "./components/pages/login/login";
 import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
 import Topic from "./components/pages/topic/topic";
-import ThemeSwitch from "./components/themeSwitch";
-import { useSelector } from "react-redux";
-import { RootState, store } from "./store";
-import { useReducer } from "react";
-import { authSlice } from "./authslice";
+import { store } from "./store";
+import { authSlice } from "./authSlice";
 import { User } from "firebase/auth";
 import { auth } from "./firebase";
+import "./App.css";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -36,7 +34,9 @@ export default function App() {
   });
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <div id="page-container">
+        <RouterProvider router={router} />
+      </div>
     </div>
   );
 }

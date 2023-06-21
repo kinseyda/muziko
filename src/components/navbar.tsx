@@ -83,11 +83,13 @@ export default function Navbar() {
               </li>
             </Fragment>
           ) : (
-            <li>
-              <NavLink to="/login" className="">
-                Log in
-              </NavLink>
-            </li>
+            <Fragment>
+              <li>
+                <NavLink to="/login" className="">
+                  Log in
+                </NavLink>
+              </li>
+            </Fragment>
           )}
         </ul>
       </div>
