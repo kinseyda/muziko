@@ -20,7 +20,7 @@ export default function Welcome() {
                 <b>together</b>
               </div>
               <div>
-                <NavLink to="/register" className="link text-primary">
+                <NavLink to="/register" className="link">
                   Join the community today
                 </NavLink>
               </div>
