@@ -12,6 +12,7 @@ import { authSlice } from "./authSlice";
 import { User } from "firebase/auth";
 import { auth } from "./firebase";
 import "./App.css";
+import { useDispatch } from "react-redux";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -25,11 +26,12 @@ const router = createHashRouter([
 ]);
 
 export default function App() {
+  const dispatch = useDispatch();
   auth.onAuthStateChanged((user: User | null) => {
     if (user === null) {
-      store.dispatch(authSlice.actions.setLogin(undefined));
+      dispatch(authSlice.actions.setLogin(undefined));
     } else {
-      store.dispatch(authSlice.actions.setLogin({ email: user.email!! }));
+      dispatch(authSlice.actions.setLogin({ email: user.email!! }));
     }
   });
 

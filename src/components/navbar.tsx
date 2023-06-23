@@ -5,10 +5,11 @@ import ThemeSwitch from "./themeSwitch";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [navbarSearch, setNavbarSearch] = useState("");
   const user = useSelector((state: RootState) => state.auth).user;
   return (
     <div className="navbar bg-base-300 gap-2">
@@ -27,15 +28,23 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div>
-        <div className="btn btn-ghost btn-circle rounded-full">
+        <NavLink
+          to={{ pathname: "/search", search: "" }}
+          className="btn btn-ghost btn-circle rounded-full"
+        >
           <ListBulletIcon className="w-8" />
-        </div>
+        </NavLink>
       </div>
       <div className="flex-1">
         <input
           type="text"
           placeholder="Search"
           className="flex-1 input input-bordered w-full "
+          onChange={(e) => setNavbarSearch(e.target.value)}
+          onKeyUp={(e) => {
+            if (e.key === "Enter")
+              navigate({ pathname: "/search", search: navbarSearch });
+          }}
         />
       </div>
       <div>
