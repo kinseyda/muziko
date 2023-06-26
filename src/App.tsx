@@ -9,10 +9,11 @@ import Search from "./components/pages/search/search";
 import Topic from "./components/pages/topic/topic";
 import { store } from "./store";
 import { authSlice } from "./authSlice";
-import { User } from "firebase/auth";
+import { User as fbUser } from "firebase/auth";
 import { auth } from "./firebase";
 import "./App.css";
 import { useDispatch } from "react-redux";
+import { User } from "./data/domain-classes/user";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -27,11 +28,11 @@ const router = createHashRouter([
 
 export default function App() {
   const dispatch = useDispatch();
-  auth.onAuthStateChanged((user: User | null) => {
+  auth.onAuthStateChanged((user: fbUser | null) => {
     if (user === null) {
       dispatch(authSlice.actions.setLogin(undefined));
     } else {
-      dispatch(authSlice.actions.setLogin({ email: user.email!! }));
+      dispatch(authSlice.actions.setLogin(new User(user.email!!)));
     }
   });
 

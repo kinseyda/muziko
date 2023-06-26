@@ -1,7 +1,7 @@
 import { UserIcon, ListBulletIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import ThemeSwitch from "./themeSwitch";
+import ThemeSwitch from "./theme-switch";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
