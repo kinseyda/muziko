@@ -6,6 +6,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Fragment, useState } from "react";
+import SettingsButton from "./settings-button";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ export default function Navbar() {
         />
       </div>
       <div>
-        <ThemeSwitch />
+        <SettingsButton />
       </div>
       <div className="dropdown dropdown-end">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

@@ -16,18 +16,18 @@ export default function ThemeSwitch() {
     dispatch(updateTheme(theme as "light" | "dark"));
   }, [theme]);
   return (
-    <label className="swap swap-rotate btn btn-ghost btn-circle">
-      <input
-        onClick={toggleTheme}
-        type="checkbox"
-        defaultChecked={theme === "dark"}
-      />
-      <div className="swap-on w-8">
-        <MoonIcon />
-      </div>
-      <div className="swap-off w-8">
-        <SunIcon />
-      </div>
-    </label>
+    <div className="flex flex-row" onClick={toggleTheme}>
+      <label
+        className={`swap swap-rotate ${theme === "dark" && "swap-active"}`}
+      >
+        <div className="swap-on w-8">
+          <MoonIcon />
+        </div>
+        <div className="swap-off w-8">
+          <SunIcon />
+        </div>
+      </label>
+      <span>{theme === "dark" ? "Dark" : "Light"} theme</span>
+    </div>
   );
 }

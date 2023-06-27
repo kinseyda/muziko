@@ -4,12 +4,17 @@ import { LanguageKey } from "./data/text/languages";
 // Define a type for the slice state
 interface SettingsState {
   language: LanguageKey;
-  theme: "dark" | "light" ;
+  theme: "dark" | "light";
 }
 
 // Define the initial state using that type
 const initialState: SettingsState = {
-  language: "English",
+  language:
+    localStorage.getItem("language") === "French"
+      ? "French"
+      : localStorage.getItem("language") === "English"
+      ? "English"
+      : "English",
   theme:
     localStorage.getItem("theme") === "dark"
       ? "dark"
@@ -35,10 +40,13 @@ export const settingsSlice = createSlice({
     builder.addCase(updateTheme.fulfilled, (state, action) => {
       state.theme = action.payload;
     });
+    builder.addCase(updateLanguage.fulfilled, (state, action) => {
+      state.language = action.payload;
+    });
   },
 });
 
-export const { setLanguage } = settingsSlice.actions;
+export const { setLanguage, setTheme } = settingsSlice.actions;
 
 export default settingsSlice.reducer;
 export const updateTheme = createAsyncThunk(
@@ -47,5 +55,12 @@ export const updateTheme = createAsyncThunk(
     localStorage.setItem("theme", theme);
     document.querySelector("html")?.setAttribute("data-theme", theme);
     return theme;
+  }
+);
+export const updateLanguage = createAsyncThunk(
+  "settings/updateLanguage",
+  (language: LanguageKey) => {
+    localStorage.setItem("language", language);
+    return language;
   }
 );
