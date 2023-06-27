@@ -1,9 +1,9 @@
 import { UserIcon, ListBulletIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../../../../store";
 import ThemeSwitch from "./theme-switch";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../../../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Fragment, useState } from "react";
 
@@ -12,7 +12,7 @@ export default function Navbar() {
   const [navbarSearch, setNavbarSearch] = useState("");
   const user = useSelector((state: RootState) => state.auth).user;
   return (
-    <div className="navbar bg-base-300 gap-2">
+    <div className="navbar bg-base-300 gap-2 z-50">
       <div className="flex-none">
         <NavLink
           to="/"

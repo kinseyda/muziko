@@ -1,7 +1,8 @@
-import { Artist } from "../../../data/domain-classes/artist";
-import { Release } from "../../../data/domain-classes/release";
-import { Topic } from "../../../data/domain-classes/topic";
-import { Track } from "../../../data/domain-classes/track";
+import { NavLink } from "react-router-dom";
+import { Track } from "../../../data/schema/search/track";
+import { Artist } from "../../../data/schema/search/artist";
+import Release from "../../../data/schema/search/release";
+import Topic from "../../../data/schema/search/topic";
 
 function TrackContent(track: Track) {
   return <div>Track</div>;
@@ -33,9 +34,14 @@ export default function TopicCard(props: { topic: Topic }) {
       <div className="card-body">
         <h2 className="card-title">{props.topic.name}</h2>
         <ContentSwitch topic={props.topic} />
-        <p>Popularity: {props.topic.popularity}</p>
+        <p>Popularity: {props.topic.popularity}/100</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Button</button>
+          <NavLink
+            to={{ pathname: "/topic", search: props.topic.uri }}
+            className="btn btn-ghost rounded-full"
+          >
+            Details
+          </NavLink>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Topic } from "../../../data/domain-classes/topic";
+import Topic from "../../../data/schema/search/topic";
 import TopicCard from "./topic-card";
 
 export default function TopicList(props: { topics: Topic[] }) {

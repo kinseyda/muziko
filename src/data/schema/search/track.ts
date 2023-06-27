@@ -1,3 +1,3 @@
-import { Topic } from "./topic";
+import Topic from "./topic";
 
 export class Track extends Topic {}

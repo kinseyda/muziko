@@ -1,19 +1,20 @@
+import { User as fbUser } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { RouterProvider, createHashRouter } from "react-router-dom";
-import Test1 from "./components/pages/test1";
-import Test2 from "./components/pages/test2";
-import Welcome from "./components/pages/welcome/welcome";
+import "./App.css";
+import { authSlice } from "./authSlice";
 import Error from "./components/pages/error/error";
 import Login from "./components/pages/login/login";
 import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
+import Test1 from "./components/pages/test/test1";
+import Test2 from "./components/pages/test/test2";
 import Topic from "./components/pages/topic/topic";
-import { store } from "./store";
-import { authSlice } from "./authSlice";
-import { User as fbUser } from "firebase/auth";
+import Welcome from "./components/pages/welcome/welcome";
+import { User } from "./data/schema/user";
 import { auth } from "./firebase";
-import "./App.css";
-import { useDispatch } from "react-redux";
-import { User } from "./data/domain-classes/user";
+import { updateTheme } from "./settingsSlice";
+import { AppDispatch } from "./store";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -27,7 +28,7 @@ const router = createHashRouter([
 ]);
 
 export default function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   auth.onAuthStateChanged((user: fbUser | null) => {
     if (user === null) {
       dispatch(authSlice.actions.setLogin(undefined));
@@ -36,9 +37,13 @@ export default function App() {
     }
   });
 
-  document
-    .querySelector("html")
-    ?.setAttribute("data-theme", localStorage.getItem("theme") || "light");
+  const storedTheme = localStorage.getItem("theme");
+  if (storedTheme === "dark" || storedTheme === "light") {
+    dispatch(updateTheme(storedTheme as "dark" | "light"));
+  } else {
+    dispatch(updateTheme("light"));
+  }
+
   return (
     <div className="App">
       <div id="page-container">

@@ -1,12 +1,11 @@
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { RootState } from "../../store";
+import { RootState } from "../../../store";
 import { useEffect, useState } from "react";
-import { db } from "../../firebase";
+import { db } from "../../../firebase";
 
 export default function Test1() {
-
   const [testNumber, setTestNumber] = useState([]);
 
   const fetchPost = async () => {

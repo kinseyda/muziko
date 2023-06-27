@@ -2,53 +2,56 @@ import { AdjustmentsVerticalIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { Artist } from "../../../data/domain-classes/artist";
-import { Release } from "../../../data/domain-classes/release";
-import { Topic } from "../../../data/domain-classes/topic";
-import { Track } from "../../../data/domain-classes/track";
-import { S_SearchResponse } from "../../../data/spotify-classes";
-import { spotifySlice } from "../../../spotifySlice";
-import { RootState } from "../../../store";
-import Centered from "../../centered";
-import Page from "../../page/page";
+import { S_SearchResponse } from "../../../data/schema/spotify";
+import { fetchToken } from "../../../spotifySlice";
+import { AppDispatch, RootState } from "../../../store";
+import Centered from "../../common/centered";
+import Page from "../../common/page/page";
 import TopicList from "./topic-list";
+import { Track } from "../../../data/schema/search/track";
+import { Artist } from "../../../data/schema/search/artist";
+import Topic from "../../../data/schema/search/topic";
+import Release from "../../../data/schema/search/release";
 
-function convertSpotifySchema(values: S_SearchResponse): Topic[] {
+export function convertSpotifySearchSchema(values: S_SearchResponse): Topic[] {
   const topicAr: Topic[] = [];
   if (values.tracks) {
     for (const track of values.tracks.items) {
       topicAr.push(
-        new Track(
-          track.id,
-          track.name,
-          track.album.images[0]?.url,
-          track.popularity || 0
-        )
+        new Track({
+          id: track.id,
+          imageLink: track.album.images[0]?.url,
+          name: track.name,
+          popularity: track.popularity || 0,
+          uri: track.uri,
+        })
       );
     }
   }
   if (values.albums) {
     for (const album of values.albums.items) {
       topicAr.push(
-        new Release(
-          album.id,
-          album.name,
-          album.images[0]?.url,
-          album.popularity || 0,
-          album.album_type
-        )
+        new Release({
+          id: album.id,
+          imageLink: album.images[0]?.url,
+          name: album.name,
+          popularity: album.popularity || 0,
+          type: album.album_type,
+          uri: album.uri,
+        })
       );
     }
   }
   if (values.artists) {
     for (const artist of values.artists.items) {
       topicAr.push(
-        new Artist(
-          artist.id,
-          artist.name,
-          artist.images[0]?.url,
-          artist.popularity || 0
-        )
+        new Artist({
+          id: artist.id,
+          imageLink: artist.images[0]?.url,
+          name: artist.name,
+          popularity: artist.popularity || 0,
+          uri: artist.uri,
+        })
       );
     }
   }
@@ -60,40 +63,21 @@ function convertSpotifySchema(values: S_SearchResponse): Topic[] {
 export default function Search() {
   const [searchParams] = useSearchParams();
   const token = useSelector((state: RootState) => state.spotify).accessToken;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const [searchResults, setSearchResults] = useState([] as Topic[]);
 
   const searchVal = searchParams.keys().next().value;
 
   useEffect(() => {
-    if (!searchVal) {
+    if (!searchVal || !token) {
       setSearchResults([]);
+      if (!token) {
+        dispatch(fetchToken());
+      }
     } else {
       const getSearch = async () => {
-        let curToken = token;
-        if (
-          !token ||
-          token.created + token.validityPeriod <
-            Math.floor(new Date().getTime() / 1000)
-        ) {
-          const newToken = (
-            await (
-              await fetch("https://requesttoken-7ybywndcja-uc.a.run.app", {
-                method: "GET",
-              })
-            ).json()
-          ).token;
-          const newTokenObj = {
-            created: Math.floor(new Date().getTime() / 1000),
-            token: newToken.access_token,
-            validityPeriod: newToken.expires_in,
-          };
-          dispatch(spotifySlice.actions.setAccessToken(newTokenObj));
-          curToken = newTokenObj;
-        }
-
-        const values = await (
+        const values = (await (
           await fetch(
             "https://api.spotify.com/v1/search?" +
               new URLSearchParams({
@@ -102,16 +86,16 @@ export default function Search() {
               }),
             {
               method: "GET",
-              headers: { Authorization: `Bearer ${curToken!!.token}` },
+              headers: { Authorization: `Bearer ${token!!.token}` },
             }
           )
-        ).json();
+        ).json()) as S_SearchResponse;
 
-        setSearchResults(convertSpotifySchema(values as S_SearchResponse));
+        setSearchResults(convertSpotifySearchSchema(values));
       };
       getSearch();
     }
-  }, [searchVal]);
+  }, [searchVal, token]);
 
   return (
     <Page>

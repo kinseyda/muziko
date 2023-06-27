@@ -5,7 +5,7 @@ import { auth } from "../../../firebase";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import UserForm from "../../user-form";
+import UserForm from "../../common/user-form";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),

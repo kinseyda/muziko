@@ -1,5 +1,5 @@
-import Centered from "../../centered";
-import Page from "../../page/page";
+import Centered from "../../common/centered";
+import Page from "../../common/page/page";
 
 export default function Error() {
   return (

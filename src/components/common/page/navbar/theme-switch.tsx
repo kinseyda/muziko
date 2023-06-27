@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../store";
+import { updateTheme } from "../../../../settingsSlice";
 
 export default function ThemeSwitch() {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const dispatch = useDispatch<AppDispatch>();
+  const rTheme = useSelector((state: RootState) => state.settings.theme);
+  const [theme, setTheme] = useState(rTheme);
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
   useEffect(() => {
-    document.querySelector("html")?.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
+    dispatch(updateTheme(theme as "light" | "dark"));
   }, [theme]);
   return (
     <label className="swap swap-rotate btn btn-ghost btn-circle">
