@@ -1,10 +1,11 @@
-import Navbar from "./navbar/navbar";
+import { useEffect } from "react";
 
-export default function Page(props: { children: React.ReactNode }) {
-  return (
-    <div className="h-screen w-screen flex flex-col z-0">
-      <Navbar></Navbar>
-      <div className="grow">{props.children}</div>
-    </div>
-  );
+export default function Page(props: {
+  children: React.ReactNode;
+  title: string;
+}) {
+  useEffect(() => {
+    document.title = `Muziko${props.title ? ` | ${props.title}` : ""}`;
+  }, [props.title]);
+  return <div className="h-full w-full">{props.children}</div>;
 }

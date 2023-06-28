@@ -18,7 +18,7 @@ export default function Navbar() {
   );
   const text = languages[languageKey].navbar;
   return (
-    <div className="navbar bg-base-300 gap-2 z-50">
+    <div className="navbar bg-base-300 gap-2 z-10">
       <div className="flex-none">
         <NavLink
           to="/"

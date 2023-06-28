@@ -1,7 +1,7 @@
 export class Post {
-  private _topicUri: string;
+  topicUri: string;
 
   constructor(topicUri: string) {
-    this._topicUri = topicUri;
+    this.topicUri = topicUri;
   }
 }

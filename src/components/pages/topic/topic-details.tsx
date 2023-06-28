@@ -9,7 +9,7 @@ import {
   S_Topic,
   S_TrackObject,
 } from "../../../data/schema/spotify";
-import Page from "../../common/page/page";
+import NavPage from "../../common/page/nav-page";
 import Topic from "../../../data/schema/domain/topic";
 import { Track } from "../../../data/schema/domain/track";
 import Release from "../../../data/schema/domain/release";
@@ -105,7 +105,7 @@ export default function TopicDetails() {
     }
   }, [topicURL, token]);
   return (
-    <Page>
+    <NavPage title="Details">
       <div className="h-full flex flex-col m-3">
         <h2 className="text-3xl font-bold flex content-center items-center">
           {topic instanceof Topic && (
@@ -136,6 +136,6 @@ export default function TopicDetails() {
           )}
         </div>
       </div>
-    </Page>
+    </NavPage>
   );
 }

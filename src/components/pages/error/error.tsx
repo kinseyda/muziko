@@ -1,12 +1,12 @@
 import Centered from "../../common/centered";
-import Page from "../../common/page/page";
+import NavPage from "../../common/page/nav-page";
 
 export default function Error() {
   return (
-    <Page>
+    <NavPage title="Error">
       <Centered>
         <div>An error has occurred!</div>
       </Centered>
-    </Page>
+    </NavPage>
   );
 }

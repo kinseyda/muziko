@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { auth } from "../../../firebase";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import * as Yup from "yup";
@@ -84,7 +84,10 @@ export default function Login() {
                   />
                 </label>
               </div>
-              <div className="card-actions justify-end">
+              <div className="card-actions justify-between align-middle items-center">
+                <NavLink to="/login" className="link link-primary">
+                  Log in instead
+                </NavLink>
                 <button
                   className={`btn ${
                     Object.keys(errors).length || isSubmitting

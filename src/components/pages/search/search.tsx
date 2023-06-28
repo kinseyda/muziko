@@ -6,7 +6,7 @@ import { S_SearchResponse } from "../../../data/schema/spotify";
 import { fetchToken } from "../../../spotifySlice";
 import { AppDispatch, RootState } from "../../../store";
 import Centered from "../../common/centered";
-import Page from "../../common/page/page";
+import NavPage from "../../common/page/nav-page";
 import TopicList from "./topic-list";
 import { Track } from "../../../data/schema/domain/track";
 import { Artist } from "../../../data/schema/domain/artist";
@@ -104,7 +104,7 @@ export default function Search() {
   }, [searchVal, token]);
 
   return (
-    <Page>
+    <NavPage title="Search">
       <div className="drawer lg:drawer-open h-full">
         <input id="search-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col m-3">
@@ -117,7 +117,7 @@ export default function Search() {
             </label>
             <div className="m-3"></div>
             <div>
-              {text.searchFor}: {searchVal}
+              {text.searchFor}: {searchVal ? `"${searchVal}"` : "None"}
             </div>
           </h2>
           <div className="m-1"></div>
@@ -135,7 +135,7 @@ export default function Search() {
             )}
           </div>
         </div>
-        <div className="drawer-side h-full">
+        <div className="drawer-side h-full z-20">
           <label htmlFor="search-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 h-full bg-base-200">
             <li>
@@ -147,6 +147,6 @@ export default function Search() {
           </ul>
         </div>
       </div>
-    </Page>
+    </NavPage>
   );
 }

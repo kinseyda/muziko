@@ -8,22 +8,30 @@ export default function LanguageSwitch() {
   const dispatch = useDispatch<AppDispatch>();
   const rlanguage = useSelector((state: RootState) => state.settings.language);
   const [language, setLanguage] = useState(rlanguage);
-  const toggleLanguage = () => {
-    setLanguage(language === "English" ? "Français" : "English");
-  };
 
   useEffect(() => {
     dispatch(updateLanguage(language));
   }, [language]);
   return (
-    <div className="flex flex-row" onClick={toggleLanguage}>
-      <div className="w-8">
-        <LanguageIcon />
-      </div>
-      <label className={`swap ${language === "Français" && "swap-active"}`}>
-        <div className="swap-off w-8 whitespace-nowrap ">🇬🇧 English</div>
-        <div className="swap-on w-8 whitespace-nowrap ">🇫🇷 Français</div>
-      </label>
-    </div>
+    <details className="flex flex-row ">
+      <summary>
+        <div className="w-8">
+          <LanguageIcon />
+        </div>{" "}
+        Language
+      </summary>
+      <ul tabIndex={0} className="">
+        <li>
+          <span onClick={() => setLanguage("English")}>
+            🇬🇧 English {language === "English" ? "✓" : ""}
+          </span>
+        </li>
+        <li>
+          <span onClick={() => setLanguage("Français")}>
+            🇫🇷 Français {language === "Français" ? "✓" : ""}
+          </span>
+        </li>
+      </ul>
+    </details>
   );
 }
