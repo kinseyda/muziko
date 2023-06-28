@@ -9,9 +9,8 @@ import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
 import Test1 from "./components/pages/test/test1";
 import Test2 from "./components/pages/test/test2";
-import Topic from "./components/pages/topic/topic";
+import TopicDetails from "./components/pages/topic/topic-details";
 import Welcome from "./components/pages/welcome/welcome";
-import { User } from "./data/schema/user";
 import { auth } from "./firebase";
 import { updateTheme } from "./settingsSlice";
 import { AppDispatch } from "./store";
@@ -22,7 +21,7 @@ const router = createHashRouter([
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/search", element: <Search /> },
-  { path: "/topic", element: <Topic /> },
+  { path: "/topic", element: <TopicDetails /> },
   { path: "/test1", element: <Test1 /> },
   { path: "/test2", element: <Test2 /> },
 ]);
@@ -33,7 +32,7 @@ export default function App() {
     if (user === null) {
       dispatch(authSlice.actions.setLogin(undefined));
     } else {
-      dispatch(authSlice.actions.setLogin(new User(user.email!!)));
+      dispatch(authSlice.actions.setLogin({ email: user.email!! }));
     }
   });
 

@@ -7,11 +7,16 @@ import { auth } from "../../../../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Fragment, useState } from "react";
 import SettingsButton from "./settings-button";
+import { languages } from "../../../../data/text/languages";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [navbarSearch, setNavbarSearch] = useState("");
-  const user = useSelector((state: RootState) => state.auth).user;
+  const user = useSelector((state: RootState) => state.auth.user);
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].navbar;
   return (
     <div className="navbar bg-base-300 gap-2 z-50">
       <div className="flex-none">
@@ -39,12 +44,15 @@ export default function Navbar() {
       <div className="flex-1">
         <input
           type="text"
-          placeholder="Search"
+          placeholder={text.search}
           className="flex-1 input input-bordered w-full "
           onChange={(e) => setNavbarSearch(e.target.value)}
           onKeyUp={(e) => {
             if (e.key === "Enter")
-              navigate({ pathname: "/search", search: navbarSearch });
+              navigate({
+                pathname: "/search",
+                search: encodeURIComponent(navbarSearch),
+              });
           }}
         />
       </div>

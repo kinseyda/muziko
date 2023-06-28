@@ -34,7 +34,10 @@ export interface S_TrackObject extends S_Helper {
   uri: string;
 }
 export interface S_AlbumObject extends S_Helper {
+  album_type: string;
+  images: S_ImageObject[];
   popularity?: number;
+  uri: string;
 }
 export interface S_SimplifiedAlbumObject extends S_Helper {
   album_type: string;

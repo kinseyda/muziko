@@ -7,24 +7,26 @@ import Background from "./background/background";
 import { languages } from "../../../data/text/languages";
 
 export default function Welcome() {
-  const user = useSelector((state: RootState) => state.auth).user;
+  const user = useSelector((state: RootState) => state.auth.user);
   const languageKey = useSelector(
     (state: RootState) => state.settings
   ).language;
-  const text = languages[languageKey].welcomeText;
+  const text = languages[languageKey].welcome;
   return (
     <Page>
       <Background>
         <Centered>
           {user ? (
-            <h2>Welcome {user?.email} </h2>
+            <h2 className="text-3xl font-bold">
+              {text.userWelcome}, {user?.email}{" "}
+            </h2>
           ) : (
             <div className="text-center flex flex-col gap-10 ">
               <div className="text-5xl">{text.mainSlogan}</div>
               <div>
                 <NavLink
                   to="/register"
-                  className="btn rounded-full bg-base-100"
+                  className="btn glass rounded-full bg-base-100"
                 >
                   {text.joinButton}
                 </NavLink>

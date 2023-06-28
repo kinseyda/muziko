@@ -8,10 +8,11 @@ import { AppDispatch, RootState } from "../../../store";
 import Centered from "../../common/centered";
 import Page from "../../common/page/page";
 import TopicList from "./topic-list";
-import { Track } from "../../../data/schema/search/track";
-import { Artist } from "../../../data/schema/search/artist";
-import Topic from "../../../data/schema/search/topic";
-import Release from "../../../data/schema/search/release";
+import { Track } from "../../../data/schema/domain/track";
+import { Artist } from "../../../data/schema/domain/artist";
+import Topic from "../../../data/schema/domain/topic";
+import Release from "../../../data/schema/domain/release";
+import { languages } from "../../../data/text/languages";
 
 export function convertSpotifySearchSchema(values: S_SearchResponse): Topic[] {
   const topicAr: Topic[] = [];
@@ -69,6 +70,11 @@ export default function Search() {
 
   const searchVal = searchParams.keys().next().value;
 
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].search;
+
   useEffect(() => {
     if (!searchVal || !token) {
       setSearchResults([]);
@@ -110,7 +116,9 @@ export default function Search() {
               <AdjustmentsVerticalIcon className="h-8" />
             </label>
             <div className="m-3"></div>
-            <div>Search: {searchVal}</div>
+            <div>
+              {text.searchFor}: {searchVal}
+            </div>
           </h2>
           <div className="m-1"></div>
           <div className="m-3 grow">
@@ -119,11 +127,11 @@ export default function Search() {
                 <TopicList topics={searchResults} />
               ) : (
                 <Centered>
-                  <progress className="progress w-64" />
+                  <span className="loading loading-spinner w-16"></span>
                 </Centered>
               )
             ) : (
-              <div>Enter a search query to see some results.</div>
+              text.emptyQuery
             )}
           </div>
         </div>

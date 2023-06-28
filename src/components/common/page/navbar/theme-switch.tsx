@@ -3,6 +3,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store";
 import { updateTheme } from "../../../../settingsSlice";
+import { languages } from "../../../../data/text/languages";
 
 export default function ThemeSwitch() {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,6 +16,11 @@ export default function ThemeSwitch() {
   useEffect(() => {
     dispatch(updateTheme(theme as "light" | "dark"));
   }, [theme]);
+
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].themeSwitch;
   return (
     <div className="flex flex-row" onClick={toggleTheme}>
       <label
@@ -27,7 +33,7 @@ export default function ThemeSwitch() {
           <SunIcon />
         </div>
       </label>
-      <span>{theme === "dark" ? "Dark" : "Light"} theme</span>
+      {theme === "dark" ? text.dark : text.light}
     </div>
   );
 }

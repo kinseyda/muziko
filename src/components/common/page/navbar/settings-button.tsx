@@ -4,8 +4,11 @@ import LanguageSwitch from "./language-switch";
 
 export default function SettingsButton() {
   return (
-    <div className="dropdown dropdown-end">
-      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+    <div className="dropdown dropdown-end ">
+      <label
+        tabIndex={0}
+        className="btn btn-ghost btn-circle avatar transition transform focus:rotate-[30deg] "
+      >
         <div className={`w-10 rounded-full `}>
           <Cog6ToothIcon />
         </div>

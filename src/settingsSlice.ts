@@ -10,8 +10,8 @@ interface SettingsState {
 // Define the initial state using that type
 const initialState: SettingsState = {
   language:
-    localStorage.getItem("language") === "French"
-      ? "French"
+    localStorage.getItem("language") === "Français"
+      ? "Français"
       : localStorage.getItem("language") === "English"
       ? "English"
       : "English",
