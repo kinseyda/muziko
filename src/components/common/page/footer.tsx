@@ -1,6 +1,10 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { NavLink } from "react-router-dom";
+import spotifyIconBlack from "../../../resources/spotify/icons/black.png";
+import spotifyIconWhite from "../../../resources/spotify/icons/white.png";
+import muzikoIconBlack from "../../../resources/Muziko-logo-transparent-black.svg";
+import muzikoIconWhite from "../../../resources/Muziko-logo-transparent-white.svg";
 
 export default function Footer() {
   const theme = useSelector((state: RootState) => state.settings.theme);
@@ -9,9 +13,7 @@ export default function Footer() {
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <NavLink to="/" className="h-12 w-12 aspect-square">
           <img
-            src={`/Muziko-logo-transparent-${
-              theme === "dark" ? "white.svg" : "black.svg"
-            }`}
+            src={theme === "dark" ? muzikoIconWhite : muzikoIconBlack}
             className="h-12"
             alt="Muziko logo"
           />
@@ -71,11 +73,7 @@ export default function Footer() {
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <a href="https://open.spotify.com/" className="h-12 w-12 aspect-square">
           <img
-            src={`${
-              theme === "dark"
-                ? "/spotify/icons/white.png"
-                : "/spotify/icons/black.png"
-            }`}
+            src={`${theme === "dark" ? spotifyIconWhite : spotifyIconBlack}`}
             alt="Spotify logo"
             className="h-12 w-12"
           />
