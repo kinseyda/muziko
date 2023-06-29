@@ -104,11 +104,11 @@ export default function Search() {
   }, [searchVal, token]);
 
   return (
-    <NavPage title="Search">
+    <NavPage title={`${text.search}: "${searchVal}"`}>
       <div className="drawer lg:drawer-open h-full">
         <input id="search-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col m-3">
-          <h2 className="text-3xl font-bold flex content-center items-center">
+        <div className="drawer-content flex flex-col">
+          <h2 className="text-3xl font-bold flex content-center items-center m-3">
             <label
               htmlFor="search-drawer"
               className="btn btn-circle drawer-button lg:hidden"
@@ -120,8 +120,7 @@ export default function Search() {
               {text.searchFor}: {searchVal ? `"${searchVal}"` : "None"}
             </div>
           </h2>
-          <div className="m-1"></div>
-          <div className="m-3 grow">
+          <div className="grow">
             {searchVal ? (
               searchResults?.length ? (
                 <TopicList topics={searchResults} />
@@ -131,7 +130,7 @@ export default function Search() {
                 </Centered>
               )
             ) : (
-              text.emptyQuery
+              <div className="m-5">{text.emptyQuery}</div>
             )}
           </div>
         </div>

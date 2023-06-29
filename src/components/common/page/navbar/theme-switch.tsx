@@ -26,10 +26,10 @@ export default function ThemeSwitch() {
       <label
         className={`swap swap-rotate ${theme === "dark" && "swap-active"}`}
       >
-        <div className="swap-on w-8">
+        <div className="swap-on w-4">
           <MoonIcon />
         </div>
-        <div className="swap-off w-8">
+        <div className="swap-off w-4">
           <SunIcon />
         </div>
       </label>

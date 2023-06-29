@@ -5,7 +5,7 @@ export default function Page(props: {
   title: string;
 }) {
   useEffect(() => {
-    document.title = `Muziko${props.title ? ` | ${props.title}` : ""}`;
+    document.title = `${props.title ? ` ${props.title} | ` : ""}Muziko`;
   }, [props.title]);
   return <div className="h-full w-full">{props.children}</div>;
 }

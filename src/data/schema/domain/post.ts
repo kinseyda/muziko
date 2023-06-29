@@ -1,7 +1,21 @@
 export class Post {
-  topicUri: string;
+  topicId: string;
+  time: string;
+  content: string;
+  userId: string;
+  userDisplayName: string;
 
-  constructor(topicUri: string) {
-    this.topicUri = topicUri;
+  constructor(
+    topicId: string,
+    time: string,
+    content: string,
+    userId: string,
+    userDisplayName: string
+  ) {
+    this.topicId = topicId;
+    this.time = time;
+    this.content = content;
+    this.userId = userId;
+    this.userDisplayName = userDisplayName;
   }
 }

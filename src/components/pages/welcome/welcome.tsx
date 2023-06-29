@@ -16,29 +16,31 @@ export default function Welcome() {
     <NavPage title="">
       <Background>
         <Centered>
-          {user ? (
-            <h2 className="text-3xl font-bold">
-              {text.userWelcome}, {user?.email}{" "}
-            </h2>
-          ) : (
-            <div className="items-center text-center flex flex-col gap-10">
-              <h2 className="text-5xl">{text.mainSlogan}</h2>
-              <div>
-                <NavLink
-                  to="/register"
-                  className="btn rounded-full btn-primary "
-                >
-                  {text.joinButton}
-                </NavLink>
+          <div className="m-16">
+            {user ? (
+              <h2 className="text-3xl font-bold">
+                {text.userWelcome}, {user?.email}{" "}
+              </h2>
+            ) : (
+              <div className="items-center text-center flex flex-col gap-10">
+                <h2 className="text-5xl">{text.mainSlogan}</h2>
+                <div>
+                  <NavLink
+                    to="/register"
+                    className="btn rounded-full btn-primary "
+                  >
+                    {text.joinButton}
+                  </NavLink>
+                </div>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Velit vitae eius, maxime aut non deleniti commodi quae dolor a
+                  itaque, fugit neque similique, consequatur iusto illo! Maiores
+                  aut voluptas eveniet.
+                </p>
               </div>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
-                vitae eius, maxime aut non deleniti commodi quae dolor a itaque,
-                fugit neque similique, consequatur iusto illo! Maiores aut
-                voluptas eveniet.
-              </p>
-            </div>
-          )}
+            )}
+          </div>
         </Centered>
       </Background>
     </NavPage>

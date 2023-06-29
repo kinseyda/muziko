@@ -15,6 +15,7 @@ export interface WelcomeText {
 }
 
 export interface SearchText {
+  search: string;
   searchFor: JSX.Element;
   emptyQuery: JSX.Element;
 }

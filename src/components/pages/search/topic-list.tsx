@@ -3,7 +3,7 @@ import TopicCard from "./topic-card";
 
 export default function TopicList(props: { topics: Topic[] }) {
   return (
-    <div className="flex flex-col gap-3 place-items-center h-full overflow-auto">
+    <div className="flex flex-col gap-3 place-items-center h-full overflow-auto p-8">
       {props.topics.map((x) => {
         return <TopicCard key={x.id} topic={x} />;
       })}

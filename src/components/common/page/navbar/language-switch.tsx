@@ -15,7 +15,7 @@ export default function LanguageSwitch() {
   return (
     <details className="flex flex-row ">
       <summary>
-        <div className="w-8">
+        <div className="w-4">
           <LanguageIcon />
         </div>{" "}
         Language

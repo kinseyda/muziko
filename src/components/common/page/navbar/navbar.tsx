@@ -1,4 +1,8 @@
-import { UserIcon, ListBulletIcon } from "@heroicons/react/24/outline";
+import {
+  UserIcon,
+  ListBulletIcon,
+  MusicalNoteIcon,
+} from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import ThemeSwitch from "./theme-switch";
@@ -34,6 +38,14 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div>
+        <div>
+          <NavLink
+            to={{ pathname: "/recommend", search: "" }}
+            className="btn btn-ghost btn-circle rounded-full"
+          >
+            <MusicalNoteIcon className="w-8" />
+          </NavLink>
+        </div>
         <NavLink
           to={{ pathname: "/search", search: "" }}
           className="btn btn-ghost btn-circle rounded-full"
@@ -76,13 +88,7 @@ export default function Navbar() {
           {user ? (
             <Fragment>
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
+                <NavLink to="/profile">Profile</NavLink>
               </li>
               <li>
                 <button

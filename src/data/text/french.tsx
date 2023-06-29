@@ -13,6 +13,7 @@ export const french: Language = {
     userWelcome: <span>Bienvenue</span>,
   },
   search: {
+    search: "Recherche",
     searchFor: <span>Recherche</span>,
     emptyQuery: (
       <div>
@@ -43,7 +44,7 @@ export const french: Language = {
     artist: <span>Artiste</span>,
     artwork: "Ouvrages d'art",
     loading: <span>Chargement...</span>,
-    loadError: <span>todo</span>,
-    parseError: <span>todo</span>,
+    loadError: <span>todo load error</span>,
+    parseError: <span>todo parse error</span>,
   },
 };

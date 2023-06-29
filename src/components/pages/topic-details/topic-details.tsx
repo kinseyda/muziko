@@ -16,6 +16,7 @@ import Release from "../../../data/schema/domain/release";
 import { Artist } from "../../../data/schema/domain/artist";
 import { languages } from "../../../data/text/languages";
 import Centered from "../../common/centered";
+import CommentsSection from "./comments-section";
 
 const uriRegExp = /spotify:(?<type>(?:track|album|artist)):(?<id>\w*)/;
 
@@ -107,7 +108,7 @@ export default function TopicDetails() {
   return (
     <NavPage title="Details">
       <div className="h-full flex flex-col m-3">
-        <h2 className="text-3xl font-bold flex content-center items-center">
+        <h2 className="m-3 text-3xl font-bold flex content-center items-center">
           {topic instanceof Topic && (
             <div>
               {topic.name} ({topic instanceof Track && text.track}
@@ -119,14 +120,13 @@ export default function TopicDetails() {
           {topic === "parse" && text.parseError}
           {topic === "dne" && text.loadError}
         </h2>
-        <div className="m-1"></div>
-        <div className="m-3 grow">
+        <div className="m-3">
           {topic instanceof Topic && (
             <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 ">
               <img src={topic.imageLink} className=""></img>
-              <div>a</div>
-              <div>b</div>
-              <div>c</div>
+              <div>Details go here</div>
+              <div>More details go here</div>
+              <div>Even more details go here</div>
             </div>
           )}
           {topic === undefined && (
@@ -135,6 +135,8 @@ export default function TopicDetails() {
             </Centered>
           )}
         </div>
+        <div className="m-5 divider"></div>
+        {topic instanceof Topic && <CommentsSection topicId={topic.id} />}
       </div>
     </NavPage>
   );

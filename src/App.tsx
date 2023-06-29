@@ -3,13 +3,15 @@ import { useDispatch } from "react-redux";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import "./App.css";
 import { authSlice } from "./authSlice";
+import About from "./components/pages/about/about";
 import Error from "./components/pages/error/error";
+import Legal from "./components/pages/legal/legal";
 import Login from "./components/pages/login/login";
 import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
 import Test1 from "./components/pages/test/test1";
 import Test2 from "./components/pages/test/test2";
-import TopicDetails from "./components/pages/topic/topic-details";
+import TopicDetails from "./components/pages/topic-details/topic-details";
 import Welcome from "./components/pages/welcome/welcome";
 import { auth } from "./firebase";
 import { updateTheme } from "./settingsSlice";
@@ -22,6 +24,8 @@ const router = createHashRouter([
   { path: "/register", element: <Register /> },
   { path: "/search", element: <Search /> },
   { path: "/topic", element: <TopicDetails /> },
+  { path: "/about", element: <About /> },
+  { path: "/legal", element: <Legal /> },
   { path: "/test1", element: <Test1 /> },
   { path: "/test2", element: <Test2 /> },
 ]);

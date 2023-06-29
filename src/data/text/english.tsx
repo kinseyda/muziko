@@ -13,6 +13,7 @@ export const english: Language = {
     userWelcome: <span>Welcome</span>,
   },
   search: {
+    search: "Search",
     searchFor: <span>Search</span>,
     emptyQuery: <div>Enter a search query to see some results.</div>,
   },

@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function Footer() {
   const theme = useSelector((state: RootState) => state.settings.theme);
   return (
-    <footer className="footer bg-base-300 gap-3 z-10 p-4 grid grid-cols-1 sm:grid-cols-3 items-center">
+    <footer className="footer bg-base-300 gap-3 z-10 p-3 grid grid-cols-1 sm:grid-cols-3 items-center ">
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <NavLink to="/" className="h-12 w-12 aspect-square">
           <img
@@ -16,7 +16,18 @@ export default function Footer() {
             alt="Muziko logo"
           />
         </NavLink>
-        <p>Copyright Muziko © 2023 - All rights reserved</p>
+        <div className="flex flex-col justify-around gap-1">
+          <div>Copyright © 2023 Muziko - Some rights reserved</div>
+          <div className="flex flex-row">
+            <NavLink to="/about" className="link">
+              About Muziko
+            </NavLink>
+            <div className="divider divider-horizontal mx-1" />
+            <NavLink to="/legal" className="link">
+              Legal Information
+            </NavLink>
+          </div>
+        </div>
       </div>
       <div className="w-full h-12 col-span-1 flex flex-row gap-3 text-xs items-center order-first sm:order-none">
         <div className="divider divider-horizontal invisible sm:visible" />

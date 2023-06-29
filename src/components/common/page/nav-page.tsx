@@ -8,11 +8,11 @@ export default function NavPage(props: {
 }) {
   return (
     <Page title={props.title}>
-      <div className="h-screen w-screen flex flex-col z-0">
+      <div className="min-h-screen h-full w-screen flex flex-col z-0">
         <Navbar />
         <div className="grow">{props.children}</div>
+        <Footer />
       </div>
-      <Footer />
     </Page>
   );
 }
