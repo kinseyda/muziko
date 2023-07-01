@@ -7,10 +7,9 @@ import About from "./components/pages/about/about";
 import Error from "./components/pages/error/error";
 import Legal from "./components/pages/legal/legal";
 import Login from "./components/pages/login/login";
+import Recommendations from "./components/pages/recommend/recommend";
 import Register from "./components/pages/register/register";
 import Search from "./components/pages/search/search";
-import Test1 from "./components/pages/test/test1";
-import Test2 from "./components/pages/test/test2";
 import TopicDetails from "./components/pages/topic-details/topic-details";
 import Welcome from "./components/pages/welcome/welcome";
 import { auth } from "./firebase";
@@ -26,8 +25,7 @@ const router = createHashRouter([
   { path: "/topic", element: <TopicDetails /> },
   { path: "/about", element: <About /> },
   { path: "/legal", element: <Legal /> },
-  { path: "/test1", element: <Test1 /> },
-  { path: "/test2", element: <Test2 /> },
+  { path: "/recommend", element: <Recommendations /> },
 ]);
 
 export default function App() {

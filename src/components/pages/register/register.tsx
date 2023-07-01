@@ -24,21 +24,19 @@ export default function Login() {
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            createUserWithEmailAndPassword(
-              auth,
-              values["email"],
-              values["password"]
-            )
-              .then(() => {
-                setSubmitting(false);
-                navigate("/login");
-              })
-              .catch(() => {
-                setSubmitting(false);
-                setBackendError("Invalid email / password");
-              });
-          }, 400);
+          createUserWithEmailAndPassword(
+            auth,
+            values["email"],
+            values["password"]
+          )
+            .then(() => {
+              setSubmitting(false);
+              navigate("/login");
+            })
+            .catch(() => {
+              setSubmitting(false);
+              setBackendError("Invalid email / password");
+            });
         }}
       >
         {({ isSubmitting, errors, touched }) => (

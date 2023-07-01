@@ -3,7 +3,7 @@ export interface F_Collections {
   stats: { users: { count: number } };
 }
 export interface F_TopicDoc {
-  [time: string]: F_PostMap;
+  [time: number]: F_PostMap;
 }
 
 export interface F_PostMap {

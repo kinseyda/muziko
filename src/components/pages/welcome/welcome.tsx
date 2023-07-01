@@ -9,8 +9,8 @@ import { languages } from "../../../data/text/languages";
 export default function Welcome() {
   const user = useSelector((state: RootState) => state.auth.user);
   const languageKey = useSelector(
-    (state: RootState) => state.settings
-  ).language;
+    (state: RootState) => state.settings.language
+  );
   const text = languages[languageKey].welcome;
   return (
     <NavPage title="">
