@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.1efa46bd.css",
-    "main.js": "./static/js/main.9ba69112.js",
+    "main.css": "./static/css/main.e728cc0d.css",
+    "main.js": "./static/js/main.dd9762ef.js",
     "static/js/787.b76f6aa5.chunk.js": "./static/js/787.b76f6aa5.chunk.js",
     "static/media/black.png": "./static/media/black.0e932c0a97b299edcdc9.png",
     "static/media/white.png": "./static/media/white.ecd5405176643e26f9f8.png",
     "static/media/Muziko-logo-transparent-black.svg": "./static/media/Muziko-logo-transparent-black.fccf636c27b2ccaaf28e19698d7973fc.svg",
     "static/media/Muziko-logo-transparent-white.svg": "./static/media/Muziko-logo-transparent-white.37779431dbc56ae810626dd3f3c3df6f.svg",
     "index.html": "./index.html",
-    "main.1efa46bd.css.map": "./static/css/main.1efa46bd.css.map",
-    "main.9ba69112.js.map": "./static/js/main.9ba69112.js.map",
+    "main.e728cc0d.css.map": "./static/css/main.e728cc0d.css.map",
+    "main.dd9762ef.js.map": "./static/js/main.dd9762ef.js.map",
     "787.b76f6aa5.chunk.js.map": "./static/js/787.b76f6aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1efa46bd.css",
-    "static/js/main.9ba69112.js"
+    "static/css/main.e728cc0d.css",
+    "static/js/main.dd9762ef.js"
   ]
 }
