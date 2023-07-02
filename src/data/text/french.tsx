@@ -35,6 +35,7 @@ export const french: Language = {
   themeSwitch: {
     dark: <span>Thème de la noir</span>,
     light: <span>Thème de la lumière</span>,
+    oled: <span>Thème de l'OLED</span>,
   },
   topicDetails: {
     details: <span>Détails</span>,

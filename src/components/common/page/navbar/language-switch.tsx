@@ -13,7 +13,7 @@ export default function LanguageSwitch() {
     dispatch(updateLanguage(language));
   }, [language]);
   return (
-    <details className="flex flex-row ">
+    <details>
       <summary>
         <div className="w-4">
           <LanguageIcon />

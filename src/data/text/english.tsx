@@ -31,6 +31,7 @@ export const english: Language = {
   themeSwitch: {
     dark: <span>Dark theme</span>,
     light: <span>Light theme</span>,
+    oled: <span>OLED theme</span>,
   },
   topicDetails: {
     details: <span>Details</span>,

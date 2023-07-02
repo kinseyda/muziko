@@ -38,7 +38,7 @@ export default function TopicCard(props: { topic: Topic }) {
     <div className="card card-side card-bordered bg-base-100 shadow-xl w-full max-w-3xl ">
       <figure>
         <img
-          className="aspect-square max-h-16 lg:max-h-32"
+          className="aspect-square max-h-24 lg:max-h-32 m-3"
           src={props.topic.imageLink}
           alt={text.artwork}
         />
@@ -52,7 +52,7 @@ export default function TopicCard(props: { topic: Topic }) {
         <div className="card-actions justify-end">
           <NavLink
             to={{ pathname: "/topic", search: props.topic.uri }}
-            className="btn btn-ghost rounded-full"
+            className="btn rounded-full"
           >
             {text.details}
           </NavLink>

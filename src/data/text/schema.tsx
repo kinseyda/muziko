@@ -35,6 +35,7 @@ export interface NavbarText {
 export interface ThemeSwitchText {
   dark: JSX.Element;
   light: JSX.Element;
+  oled: JSX.Element;
 }
 
 export interface TopicDetailsText {

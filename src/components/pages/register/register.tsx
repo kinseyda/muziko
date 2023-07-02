@@ -83,9 +83,12 @@ export default function Login() {
                 </label>
               </div>
               <div className="card-actions justify-between align-middle items-center">
-                <NavLink to="/login" className="link link-primary">
-                  Log in instead
-                </NavLink>
+                <span>
+                  Have an account?{" "}
+                  <NavLink to="/login" className="link link-primary">
+                    Log in
+                  </NavLink>
+                </span>
                 <button
                   className={`btn ${
                     Object.keys(errors).length || isSubmitting

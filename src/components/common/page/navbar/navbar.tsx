@@ -8,13 +8,20 @@ import { RootState } from "../../../../store";
 import ThemeSwitch from "./theme-switch";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../../firebase";
-import { NavLink, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { Fragment, useState } from "react";
 import SettingsButton from "./settings-button";
 import { languages } from "../../../../data/text/languages";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const [navbarSearch, setNavbarSearch] = useState("");
   const user = useSelector((state: RootState) => state.auth.user);
   const languageKey = useSelector(
@@ -40,14 +47,14 @@ export default function Navbar() {
       <div>
         <div>
           <NavLink
-            to={{ pathname: "/recommend", search: "" }}
+            to={{ pathname: "/recommend" }}
             className="btn btn-ghost btn-circle rounded-full"
           >
             <MusicalNoteIcon className="w-8" />
           </NavLink>
         </div>
         <NavLink
-          to={{ pathname: "/search", search: "" }}
+          to={{ pathname: "/search" }}
           className="btn btn-ghost btn-circle rounded-full"
         >
           <ListBulletIcon className="w-8" />
@@ -56,15 +63,22 @@ export default function Navbar() {
       <div className="flex-1">
         <input
           type="text"
+          name="navbarSearch"
           placeholder={text.search}
-          className="flex-1 input input-bordered w-full "
+          className="flex-1 input input-bordered w-full"
+          disabled={location.pathname === "/search"}
           onChange={(e) => setNavbarSearch(e.target.value)}
           onKeyUp={(e) => {
-            if (e.key === "Enter")
-              navigate({
-                pathname: "/search",
-                search: encodeURIComponent(navbarSearch),
-              });
+            if (e.key === "Enter") {
+              if (location.pathname === "/search") {
+                setSearchParams(`query=${encodeURIComponent(navbarSearch)}`);
+              } else {
+                navigate({
+                  pathname: "/search",
+                  search: `query=${encodeURIComponent(navbarSearch)}`,
+                });
+              }
+            }
           }}
         />
       </div>
@@ -111,6 +125,11 @@ export default function Navbar() {
               <li>
                 <NavLink to="/login" className="">
                   Log in
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/register" className="">
+                  Register
                 </NavLink>
               </li>
             </Fragment>

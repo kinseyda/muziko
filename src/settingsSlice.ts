@@ -1,26 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LanguageKey } from "./data/text/languages";
 
+export type ThemeKey = "dark" | "light" | "oled";
+
 // Define a type for the slice state
 interface SettingsState {
   language: LanguageKey;
-  theme: "dark" | "light";
+  theme: ThemeKey;
 }
 
 // Define the initial state using that type
 const initialState: SettingsState = {
-  language:
-    localStorage.getItem("language") === "Français"
-      ? "Français"
-      : localStorage.getItem("language") === "English"
-      ? "English"
-      : "English",
-  theme:
-    localStorage.getItem("theme") === "dark"
-      ? "dark"
-      : localStorage.getItem("theme") === "light"
-      ? "light"
-      : "light",
+  language: (localStorage.getItem("language") as LanguageKey) || "English",
+  theme: (localStorage.getItem("theme") as ThemeKey) || "light",
 };
 
 export const settingsSlice = createSlice({
@@ -31,7 +23,7 @@ export const settingsSlice = createSlice({
     setLanguage: (state, action: PayloadAction<LanguageKey>) => {
       state.language = action.payload;
     },
-    setTheme: (state, action: PayloadAction<"dark" | "light">) => {
+    setTheme: (state, action: PayloadAction<ThemeKey>) => {
       state.theme = action.payload;
     },
   },
@@ -51,7 +43,7 @@ export const { setLanguage, setTheme } = settingsSlice.actions;
 export default settingsSlice.reducer;
 export const updateTheme = createAsyncThunk(
   "settings/updateTheme",
-  (theme: "dark" | "light") => {
+  (theme: ThemeKey) => {
     localStorage.setItem("theme", theme);
     document.querySelector("html")?.setAttribute("data-theme", theme);
     return theme;

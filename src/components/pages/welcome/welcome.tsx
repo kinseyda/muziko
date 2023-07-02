@@ -16,7 +16,7 @@ export default function Welcome() {
     <NavPage title="">
       <Background>
         <Centered>
-          <div className="m-16">
+          <div className="m-16 text-primary-content">
             {user ? (
               <h2 className="text-3xl font-bold">
                 {text.userWelcome}, {user?.email}{" "}
@@ -27,12 +27,12 @@ export default function Welcome() {
                 <div>
                   <NavLink
                     to="/register"
-                    className="btn rounded-full btn-primary "
+                    className="btn rounded-full btn-primary"
                   >
                     {text.joinButton}
                   </NavLink>
                 </div>
-                <p>
+                <p className="max-w-lg">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Velit vitae eius, maxime aut non deleniti commodi quae dolor a
                   itaque, fugit neque similique, consequatur iusto illo! Maiores

@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import {
+  BoltSlashIcon,
+  MoonIcon,
+  PaintBrushIcon,
+  SunIcon,
+} from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store";
-import { updateTheme } from "../../../../settingsSlice";
+import { ThemeKey, updateTheme } from "../../../../settingsSlice";
 import { languages } from "../../../../data/text/languages";
 
 export default function ThemeSwitch() {
   const dispatch = useDispatch<AppDispatch>();
   const rTheme = useSelector((state: RootState) => state.settings.theme);
   const [theme, setTheme] = useState(rTheme);
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   useEffect(() => {
-    dispatch(updateTheme(theme as "light" | "dark"));
+    dispatch(updateTheme(theme as ThemeKey));
   }, [theme]);
 
   const languageKey = useSelector(
@@ -22,18 +24,30 @@ export default function ThemeSwitch() {
   );
   const text = languages[languageKey].themeSwitch;
   return (
-    <div className="flex flex-row" onClick={toggleTheme}>
-      <label
-        className={`swap swap-rotate ${theme === "dark" && "swap-active"}`}
-      >
-        <div className="swap-on w-4">
-          <MoonIcon />
-        </div>
-        <div className="swap-off w-4">
-          <SunIcon />
-        </div>
-      </label>
-      {theme === "dark" ? text.dark : text.light}
-    </div>
+    <details>
+      <summary>
+        <PaintBrushIcon className="w-4" /> Theme
+      </summary>
+      <ul tabIndex={0} className="">
+        <li>
+          <span onClick={() => setTheme("light")}>
+            <SunIcon className="w-4" />
+            {text.light} {theme === "light" ? "✓" : ""}
+          </span>
+        </li>
+        <li>
+          <span onClick={() => setTheme("dark")}>
+            <MoonIcon className="w-4" />
+            {text.dark} {theme === "dark" ? "✓" : ""}
+          </span>
+        </li>
+        <li>
+          <span onClick={() => setTheme("oled")}>
+            <BoltSlashIcon className="w-4" />
+            {text.oled} {theme === "oled" ? "✓" : ""}
+          </span>
+        </li>
+      </ul>
+    </details>
   );
 }

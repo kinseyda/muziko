@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <NavLink to="/" className="h-12 w-12 aspect-square">
           <img
-            src={theme === "dark" ? muzikoIconWhite : muzikoIconBlack}
+            src={theme === "light" ? muzikoIconBlack : muzikoIconWhite}
             className="h-12"
             alt="Muziko logo"
           />
@@ -73,7 +73,7 @@ export default function Footer() {
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <a href="https://open.spotify.com/" className="h-12 w-12 aspect-square">
           <img
-            src={`${theme === "dark" ? spotifyIconWhite : spotifyIconBlack}`}
+            src={`${theme === "light" ? spotifyIconBlack : spotifyIconWhite}`}
             alt="Spotify logo"
             className="h-12 w-12"
           />

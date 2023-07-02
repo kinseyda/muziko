@@ -15,7 +15,7 @@ export default function SettingsButton() {
       </label>
       <ul
         tabIndex={0}
-        className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+        className="mt-3 p-2 shadow menu menu-md dropdown-content bg-base-200 rounded-box w-64"
       >
         <li>
           <ThemeSwitch />

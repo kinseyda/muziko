@@ -79,9 +79,13 @@ export default function Login() {
                 </label>
               </div>
               <div className="card-actions justify-between align-middle items-center">
-                <NavLink to="/register" className="link link-primary">
-                  Register instead
-                </NavLink>
+                <span>
+                  New to Muziko?{" "}
+                  <NavLink to="/register" className="link link-primary">
+                    Register
+                  </NavLink>
+                </span>
+
                 <button
                   className={`btn ${
                     Object.keys(errors).length || isSubmitting
