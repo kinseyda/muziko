@@ -223,7 +223,7 @@ export default function Search() {
             )}
           </div>
         </div>
-        <div className="drawer-side h-full z-20">
+        <div className="drawer-side h-full z-20 lg:z-0">
           <label htmlFor="search-drawer" className="drawer-overlay"></label>
           <ul className=" p-4 w-80 h-full bg-base-200">
             <Formik

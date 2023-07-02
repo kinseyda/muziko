@@ -2,6 +2,10 @@ import {
   UserIcon,
   ListBulletIcon,
   MusicalNoteIcon,
+  PowerIcon,
+  ArrowRightOnRectangleIcon,
+  ArrowLeftOnRectangleIcon,
+  UserPlusIcon,
 } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
@@ -30,29 +34,29 @@ export default function Navbar() {
   const text = languages[languageKey].navbar;
   return (
     <div className="navbar bg-base-300 gap-2 z-10">
-      <div className="flex-none">
+      <div className="flex-none tooltip tooltip-bottom" data-tip="Home">
         <NavLink
           to="/"
-          className="hidden sm:inline-flex btn btn-ghost normal-case text-xl"
+          className="hidden md:inline-flex btn btn-ghost normal-case text-xl"
         >
           Muziko
         </NavLink>
         <NavLink
           to="/"
-          className="inline-flex sm:hidden btn btn-ghost btn-circle normal-case text-xl"
+          className="hidden sm:inline-flex md:hidden btn btn-ghost btn-circle normal-case text-xl"
         >
           M
         </NavLink>
       </div>
-      <div>
-        <div>
-          <NavLink
-            to={{ pathname: "/recommend" }}
-            className="btn btn-ghost btn-circle rounded-full"
-          >
-            <MusicalNoteIcon className="w-8" />
-          </NavLink>
-        </div>
+      <div className="tooltip tooltip-bottom" data-tip="Recommendations">
+        <NavLink
+          to={{ pathname: "/recommend" }}
+          className="btn btn-ghost btn-circle rounded-full"
+        >
+          <MusicalNoteIcon className="w-8" />
+        </NavLink>
+      </div>
+      <div className="tooltip tooltip-bottom" data-tip="Browse">
         <NavLink
           to={{ pathname: "/search" }}
           className="btn btn-ghost btn-circle rounded-full"
@@ -82,10 +86,13 @@ export default function Navbar() {
           }}
         />
       </div>
-      <div>
+      <div className="tooltip tooltip-bottom" data-tip="Settings">
         <SettingsButton />
       </div>
-      <div className="dropdown dropdown-end">
+      <div
+        className="dropdown dropdown-end tooltip tooltip-bottom"
+        data-tip="User"
+      >
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
           <div
             className={`w-10 rounded-full outline ${
@@ -97,12 +104,19 @@ export default function Navbar() {
         </label>
         <ul
           tabIndex={0}
-          className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+          className="mt-3 p-2 shadow menu menu-md dropdown-content bg-base-200 rounded-box w-64"
         >
           {user ? (
             <Fragment>
               <li>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink
+                  to="/profile"
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "" : ""
+                  }
+                >
+                  <UserIcon className="w-4" /> Profile
+                </NavLink>
               </li>
               <li>
                 <button
@@ -116,7 +130,7 @@ export default function Navbar() {
                       )
                   }
                 >
-                  Logout
+                  <ArrowLeftOnRectangleIcon className="w-4" /> Logout
                 </button>
               </li>
             </Fragment>
@@ -124,12 +138,12 @@ export default function Navbar() {
             <Fragment>
               <li>
                 <NavLink to="/login" className="">
-                  Log in
+                  <ArrowRightOnRectangleIcon className="w-4" /> Log in
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/register" className="">
-                  Register
+                  <UserPlusIcon className="w-4" /> Register
                 </NavLink>
               </li>
             </Fragment>

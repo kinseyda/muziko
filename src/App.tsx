@@ -13,8 +13,9 @@ import Search from "./components/pages/search/search";
 import TopicDetails from "./components/pages/topic-details/topic-details";
 import Welcome from "./components/pages/welcome/welcome";
 import { auth } from "./firebase";
-import { updateTheme } from "./settingsSlice";
+import { ThemeKey, updateTheme } from "./settingsSlice";
 import { AppDispatch } from "./store";
+import Profile from "./components/pages/profile/profile";
 
 const router = createHashRouter([
   { path: "*", element: <Error /> },
@@ -26,6 +27,7 @@ const router = createHashRouter([
   { path: "/about", element: <About /> },
   { path: "/legal", element: <Legal /> },
   { path: "/recommend", element: <Recommendations /> },
+  { path: "/profile", element: <Profile /> },
 ]);
 
 export default function App() {
@@ -39,8 +41,12 @@ export default function App() {
   });
 
   const storedTheme = localStorage.getItem("theme");
-  if (storedTheme === "dark" || storedTheme === "light") {
-    dispatch(updateTheme(storedTheme as "dark" | "light"));
+  if (
+    storedTheme === "dark" ||
+    storedTheme === "light" ||
+    storedTheme === "oled"
+  ) {
+    dispatch(updateTheme(storedTheme as ThemeKey));
   } else {
     dispatch(updateTheme("light"));
   }
