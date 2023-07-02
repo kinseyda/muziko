@@ -99,6 +99,12 @@ export default function Search() {
 
   const [searchResults, setSearchResults] = useState([] as Topic[]);
 
+  const defaultIncludes = !(
+    searchParams.get("includeArtists") ||
+    searchParams.get("includeReleases") ||
+    searchParams.get("includeTracks")
+  );
+
   const languageKey = useSelector(
     (state: RootState) => state.settings.language
   );
@@ -141,16 +147,45 @@ export default function Search() {
 
   useEffect(() => {
     if (searchParams.get("query")) {
-      updateSearch({
-        query: searchParams.get("query")!!,
-        includeArtists:
-          JSON.parse(searchParams.get("includeArtists") || "true") || undefined,
-        includeReleases:
-          JSON.parse(searchParams.get("includeReleases") || "true") ||
-          undefined,
-        includeTracks:
-          JSON.parse(searchParams.get("includeTracks") || "true") || undefined,
-      });
+      if (
+        searchParams.get("includeArtists") ||
+        searchParams.get("includeReleases") ||
+        searchParams.get("includeTracks")
+      ) {
+        updateSearch({
+          query: searchParams.get("query")!!,
+          includeArtists: JSON.parse(
+            searchParams.get("includeArtists") ||
+              JSON.stringify(defaultIncludes)
+          ),
+          includeReleases: JSON.parse(
+            searchParams.get("includeReleases") ||
+              JSON.stringify(defaultIncludes)
+          ),
+          includeTracks: JSON.parse(
+            searchParams.get("includeTracks") || JSON.stringify(defaultIncludes)
+          ),
+        });
+      } else {
+        updateSearch({
+          query: searchParams.get("query")!!,
+          includeArtists:
+            JSON.parse(
+              searchParams.get("includeArtists") ||
+                JSON.stringify(defaultIncludes)
+            ) || undefined,
+          includeReleases:
+            JSON.parse(
+              searchParams.get("includeReleases") ||
+                JSON.stringify(defaultIncludes)
+            ) || undefined,
+          includeTracks:
+            JSON.parse(
+              searchParams.get("includeTracks") ||
+                JSON.stringify(defaultIncludes)
+            ) || undefined,
+        });
+      }
     }
   }, [token]);
 
@@ -194,9 +229,12 @@ export default function Search() {
             <Formik
               initialValues={{
                 query: searchParams.get("query") || "",
-                includeArtists: searchParams.get("includeArtists") || true,
-                includeReleases: searchParams.get("includeReleases") || true,
-                includeTracks: searchParams.get("includeTracks") || true,
+                includeArtists:
+                  searchParams.get("includeArtists") || defaultIncludes,
+                includeReleases:
+                  searchParams.get("includeReleases") || defaultIncludes,
+                includeTracks:
+                  searchParams.get("includeTracks") || defaultIncludes,
               }}
               validationSchema={searchSchema}
               onSubmit={(values, { setSubmitting }) => {
