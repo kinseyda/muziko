@@ -5,6 +5,7 @@ import Centered from "../../common/centered";
 import { NavLink } from "react-router-dom";
 import Background from "./background/background";
 import { languages } from "../../../data/text/languages";
+import Stats from "./stats";
 
 export default function Welcome() {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -27,17 +28,24 @@ export default function Welcome() {
                 <div>
                   <NavLink
                     to="/register"
-                    className="btn rounded-full btn-primary"
+                    className="btn btn-info rounded-full btn-lg "
                   >
                     {text.joinButton}
                   </NavLink>
                 </div>
-                <p className="max-w-lg">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Velit vitae eius, maxime aut non deleniti commodi quae dolor a
-                  itaque, fugit neque similique, consequatur iusto illo! Maiores
-                  aut voluptas eveniet.
+                <p className="max-w-lg text-lg">
+                  <i>Muziko</i> is a platform that understands how much you love
+                  music, and how much you need to tell people about it. Using{" "}
+                  <i>Muziko</i>, you can learn more about an artist, their
+                  releases, or their tracks, and comment on them to a community
+                  of other music lovers.
+                  <br />
+                  <b>Discover your new favourite song today.</b>
                 </p>
+                <Stats />
+                <NavLink to="/about" className="btn rounded-full btn-info">
+                  Learn more about <i>Muziko</i>
+                </NavLink>
               </div>
             )}
           </div>

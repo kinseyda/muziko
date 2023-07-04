@@ -1,6 +1,6 @@
 #gradient-background {
   background-size: 400% 400%;
-  animation: gradient 20s ease infinite;
+  animation: gradient 30s ease infinite;
   height: 100%;
 }
 

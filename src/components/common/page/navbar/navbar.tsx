@@ -86,22 +86,21 @@ export default function Navbar() {
           }}
         />
       </div>
-      <div className="tooltip tooltip-bottom" data-tip="Settings">
+      <div>
         <SettingsButton />
       </div>
-      <div
-        className="dropdown dropdown-end tooltip tooltip-bottom"
-        data-tip="User"
-      >
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div
-            className={`w-10 rounded-full outline ${
-              user ? "outline-primary" : "outline-neutral"
-            }`}
-          >
-            <UserIcon />
-          </div>
-        </label>
+      <div className="dropdown dropdown-end ">
+        <div className="tooltip tooltip-bottom" data-tip="User">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div
+              className={`w-10 rounded-full outline ${
+                user ? "outline-primary" : "outline-neutral"
+              }`}
+            >
+              <UserIcon />
+            </div>
+          </label>
+        </div>
         <ul
           tabIndex={0}
           className="mt-3 p-2 shadow menu menu-md dropdown-content bg-base-200 rounded-box w-64"

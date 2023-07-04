@@ -1,10 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { NavLink } from "react-router-dom";
-import spotifyIconBlack from "../../../resources/spotify/icons/black.png";
-import spotifyIconWhite from "../../../resources/spotify/icons/white.png";
-import muzikoIconBlack from "../../../resources/Muziko-logo-transparent-black.svg";
-import muzikoIconWhite from "../../../resources/Muziko-logo-transparent-white.svg";
+import { ReactComponent as MuzikoIcon } from "../../../resources/Muziko-logo.svg";
+import { ReactComponent as SpotifyIcon } from "../../../resources/spotify/icons/icon.svg";
 
 export default function Footer() {
   const theme = useSelector((state: RootState) => state.settings.theme);
@@ -12,11 +10,7 @@ export default function Footer() {
     <footer className="footer bg-base-300 gap-3 z-10 p-3 grid grid-cols-1 sm:grid-cols-3 items-center ">
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <NavLink to="/" className="h-12 w-12 aspect-square">
-          <img
-            src={theme === "light" ? muzikoIconBlack : muzikoIconWhite}
-            className="h-12"
-            alt="Muziko logo"
-          />
+          <MuzikoIcon className="h-12 w-12 fill-current" />
         </NavLink>
         <div className="flex flex-col justify-around gap-1">
           <div>Copyright © 2023 Muziko - Some rights reserved</div>
@@ -72,11 +66,7 @@ export default function Footer() {
       </div>
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <a href="https://open.spotify.com/" className="h-12 w-12 aspect-square">
-          <img
-            src={`${theme === "light" ? spotifyIconBlack : spotifyIconWhite}`}
-            alt="Spotify logo"
-            className="h-12 w-12"
-          />
+          <SpotifyIcon className="h-12 w-12 fill-current" />
         </a>
         <div className="">
           Search and metadata functionality is provided courtesy of Spotify.

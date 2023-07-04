@@ -3,7 +3,7 @@ import NavPage from "../../common/page/nav-page";
 
 export default function Recommendations() {
   return (
-    <NavPage title="Legal">
+    <NavPage title="Recommendations">
       <Centered>
         <div>Recommendations</div>
       </Centered>

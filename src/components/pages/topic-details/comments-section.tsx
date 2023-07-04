@@ -2,24 +2,17 @@ import {
   ChatBubbleLeftEllipsisIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
-import {
-  getDocs,
-  collection,
-  getDoc,
-  doc,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { db } from "../../../firebase";
+import { useSelector } from "react-redux";
+import * as Yup from "yup";
 import { Post } from "../../../data/schema/domain/post";
 import { F_PostMap, F_TopicDoc } from "../../../data/schema/firebase";
-import CommentBubble from "./comment-bubble";
-import * as Yup from "yup";
-import Centered from "../../common/centered";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useSelector } from "react-redux";
+import { db } from "../../../firebase";
 import { RootState } from "../../../store";
+import Centered from "../../common/centered";
+import CommentBubble from "./comment-bubble";
 
 function convertFirebasePostSchema(postObjs: F_TopicDoc, topicId: string) {
   const posts: Post[] = [];

@@ -1,26 +1,20 @@
-import {
-  AdjustmentsVerticalIcon,
-  XCircleIcon,
-} from "@heroicons/react/24/outline";
+import { AdjustmentsVerticalIcon } from "@heroicons/react/24/outline";
+import { ErrorMessage, Field, Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, useSearchParams } from "react-router-dom";
+import * as Yup from "yup";
+import { Artist } from "../../../data/schema/domain/artist";
+import Release from "../../../data/schema/domain/release";
+import Topic from "../../../data/schema/domain/topic";
+import { Track } from "../../../data/schema/domain/track";
 import { S_SearchResponse } from "../../../data/schema/spotify";
+import { languages } from "../../../data/text/languages";
 import { fetchToken } from "../../../spotifySlice";
 import { AppDispatch, RootState } from "../../../store";
 import Centered from "../../common/centered";
 import NavPage from "../../common/page/nav-page";
 import TopicList from "./topic-list";
-import { Track } from "../../../data/schema/domain/track";
-import { Artist } from "../../../data/schema/domain/artist";
-import Topic from "../../../data/schema/domain/topic";
-import Release from "../../../data/schema/domain/release";
-import { languages } from "../../../data/text/languages";
-import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
-import { Formik, Field, ErrorMessage, FieldArray } from "formik";
-import * as Yup from "yup";
-import { F_PostMap } from "../../../data/schema/firebase";
-import { db } from "../../../firebase";
 
 export function convertSpotifySearchSchema(values: S_SearchResponse): Topic[] {
   const topicAr: Topic[] = [];
