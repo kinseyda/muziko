@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "./static/css/main.7d0c2e9e.css",
-    "main.js": "./static/js/main.ae8db285.js",
+    "main.js": "./static/js/main.b053bdba.js",
     "static/js/787.b76f6aa5.chunk.js": "./static/js/787.b76f6aa5.chunk.js",
     "static/media/icon.svg": "./static/media/icon.0364cfafb05e8456c249501018523462.svg",
     "static/media/Muziko-logo.svg": "./static/media/Muziko-logo.0f84ffc181935b12a1ec9876baf3bff2.svg",
     "index.html": "./index.html",
     "main.7d0c2e9e.css.map": "./static/css/main.7d0c2e9e.css.map",
-    "main.ae8db285.js.map": "./static/js/main.ae8db285.js.map",
+    "main.b053bdba.js.map": "./static/js/main.b053bdba.js.map",
     "787.b76f6aa5.chunk.js.map": "./static/js/787.b76f6aa5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7d0c2e9e.css",
-    "static/js/main.ae8db285.js"
+    "static/js/main.b053bdba.js"
   ]
 }
