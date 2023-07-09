@@ -3,32 +3,10 @@ import { useDispatch } from "react-redux";
 import { RouterProvider, createHashRouter } from "react-router-dom";
 import "./App.css";
 import { authSlice } from "./authSlice";
-import About from "./components/pages/about/about";
-import Error from "./components/pages/error/error";
-import Legal from "./components/pages/legal/legal";
-import Login from "./components/pages/login/login";
-import Recommendations from "./components/pages/recommend/recommend";
-import Register from "./components/pages/register/register";
-import Search from "./components/pages/search/search";
-import TopicDetails from "./components/pages/topic-details/topic-details";
-import Welcome from "./components/pages/welcome/welcome";
 import { auth } from "./firebase";
 import { ThemeKey, updateTheme } from "./settingsSlice";
 import { AppDispatch } from "./store";
-import Profile from "./components/pages/profile/profile";
-
-const router = createHashRouter([
-  { path: "*", element: <Error /> },
-  { path: "/", element: <Welcome /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-  { path: "/search", element: <Search /> },
-  { path: "/topic", element: <TopicDetails /> },
-  { path: "/about", element: <About /> },
-  { path: "/legal", element: <Legal /> },
-  { path: "/recommend", element: <Recommendations /> },
-  { path: "/profile", element: <Profile /> },
-]);
+import { router } from "./routes";
 
 export default function App() {
   const dispatch = useDispatch<AppDispatch>();

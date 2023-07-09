@@ -20,42 +20,17 @@ export function convertSpotifySearchSchema(values: S_SearchResponse): Topic[] {
   const topicAr: Topic[] = [];
   if (values.tracks) {
     for (const track of values.tracks.items) {
-      topicAr.push(
-        new Track({
-          id: track.id,
-          imageLink: track.album.images[0]?.url,
-          name: track.name,
-          popularity: track.popularity || 0,
-          uri: track.uri,
-        })
-      );
+      topicAr.push(new Track(track));
     }
   }
   if (values.albums) {
     for (const album of values.albums.items) {
-      topicAr.push(
-        new Release({
-          id: album.id,
-          imageLink: album.images[0]?.url,
-          name: album.name,
-          popularity: album.popularity || 0,
-          type: album.album_type,
-          uri: album.uri,
-        })
-      );
+      topicAr.push(new Release(album));
     }
   }
   if (values.artists) {
     for (const artist of values.artists.items) {
-      topicAr.push(
-        new Artist({
-          id: artist.id,
-          imageLink: artist.images[0]?.url,
-          name: artist.name,
-          popularity: artist.popularity || 0,
-          uri: artist.uri,
-        })
-      );
+      topicAr.push(new Artist(artist));
     }
   }
 

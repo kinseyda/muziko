@@ -3,9 +3,10 @@ import { RootState } from "../../../store";
 import NavPage from "../../common/page/nav-page";
 import Centered from "../../common/centered";
 import { NavLink } from "react-router-dom";
-import Background from "./background/background";
 import { languages } from "../../../data/text/languages";
 import Stats from "./stats";
+import Background from "./background/background";
+import { routes } from "../../../routes";
 
 export default function Welcome() {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -27,7 +28,7 @@ export default function Welcome() {
                 <h2 className="text-5xl">{text.mainSlogan}</h2>
                 <div>
                   <NavLink
-                    to="/register"
+                    to={routes.register.paths[languageKey]}
                     className="btn btn-info rounded-full btn-lg "
                   >
                     {text.joinButton}
@@ -43,7 +44,10 @@ export default function Welcome() {
                   <b>Discover your new favourite song today.</b>
                 </p>
                 <Stats />
-                <NavLink to="/about" className="btn rounded-full btn-info">
+                <NavLink
+                  to={routes.about.paths[languageKey]}
+                  className="btn rounded-full btn-info"
+                >
                   Learn more about <i>Muziko</i>
                 </NavLink>
               </div>

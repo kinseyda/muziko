@@ -6,6 +6,9 @@ import { XCircleIcon } from "@heroicons/react/24/outline";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import UserForm from "../../common/user-form";
+import { routes } from "../../../routes";
+import { RootState } from "../../../store";
+import { useSelector } from "react-redux";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -17,7 +20,9 @@ const loginSchema = Yup.object().shape({
 export default function Login() {
   const navigate = useNavigate();
   const [backendError, setBackendError] = useState("");
-
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
   return (
     <UserForm title="Log in">
       <Formik
@@ -81,7 +86,10 @@ export default function Login() {
               <div className="card-actions justify-between align-middle items-center">
                 <span>
                   New to Muziko?{" "}
-                  <NavLink to="/register" className="link link-primary">
+                  <NavLink
+                    to={routes.register.paths[languageKey]}
+                    className="link link-primary"
+                  >
                     Register
                   </NavLink>
                 </span>

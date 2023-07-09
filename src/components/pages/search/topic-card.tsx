@@ -6,6 +6,7 @@ import Topic from "../../../data/schema/domain/topic";
 import { languages } from "../../../data/text/languages";
 import { RootState } from "../../../store";
 import { useSelector } from "react-redux";
+import { routes } from "../../../routes";
 
 export default function TopicCard(props: { topic: Topic }) {
   const languageKey = useSelector(
@@ -51,7 +52,10 @@ export default function TopicCard(props: { topic: Topic }) {
         </p>
         <div className="card-actions justify-end">
           <NavLink
-            to={{ pathname: "/topic", search: props.topic.uri }}
+            to={{
+              pathname: routes.topic.paths[languageKey],
+              search: props.topic.uri,
+            }}
             className="btn rounded-full"
           >
             {text.details}

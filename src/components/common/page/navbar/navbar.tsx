@@ -21,6 +21,7 @@ import {
 import { Fragment, useState } from "react";
 import SettingsButton from "./settings-button";
 import { languages } from "../../../../data/text/languages";
+import { routes } from "../../../../routes";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ export default function Navbar() {
       </div>
       <div className="tooltip tooltip-bottom" data-tip="Recommendations">
         <NavLink
-          to={{ pathname: "/recommend" }}
+          to={{ pathname: routes.recommend.paths[languageKey] }}
           className="btn btn-ghost btn-circle rounded-full"
         >
           <MusicalNoteIcon className="w-8" />
@@ -58,7 +59,7 @@ export default function Navbar() {
       </div>
       <div className="tooltip tooltip-bottom" data-tip="Browse">
         <NavLink
-          to={{ pathname: "/search" }}
+          to={{ pathname: routes.search.paths[languageKey] }}
           className="btn btn-ghost btn-circle rounded-full"
         >
           <ListBulletIcon className="w-8" />
@@ -70,15 +71,15 @@ export default function Navbar() {
           name="navbarSearch"
           placeholder={text.search}
           className="flex-1 input input-bordered w-full"
-          disabled={location.pathname === "/search"}
+          disabled={location.pathname === routes.search.paths[languageKey]}
           onChange={(e) => setNavbarSearch(e.target.value)}
           onKeyUp={(e) => {
             if (e.key === "Enter") {
-              if (location.pathname === "/search") {
+              if (location.pathname === routes.search.paths[languageKey]) {
                 setSearchParams(`query=${encodeURIComponent(navbarSearch)}`);
               } else {
                 navigate({
-                  pathname: "/search",
+                  pathname: routes.search.paths[languageKey],
                   search: `query=${encodeURIComponent(navbarSearch)}`,
                 });
               }
@@ -106,7 +107,7 @@ export default function Navbar() {
           className="mt-3 p-2 shadow menu menu-md dropdown-content bg-base-200 rounded-box w-64"
         >
           {user ? (
-            <Fragment>
+            <>
               <li>
                 <NavLink
                   to="/profile"
@@ -132,20 +133,20 @@ export default function Navbar() {
                   <ArrowLeftOnRectangleIcon className="w-4" /> Logout
                 </button>
               </li>
-            </Fragment>
+            </>
           ) : (
-            <Fragment>
+            <>
               <li>
-                <NavLink to="/login" className="">
+                <NavLink to={routes.login.paths[languageKey]} className="">
                   <ArrowRightOnRectangleIcon className="w-4" /> Log in
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/register" className="">
+                <NavLink to={routes.register.paths[languageKey]} className="">
                   <UserPlusIcon className="w-4" /> Register
                 </NavLink>
               </li>
-            </Fragment>
+            </>
           )}
         </ul>
       </div>

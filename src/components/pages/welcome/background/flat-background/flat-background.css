@@ -1,7 +1,6 @@
-#gradient-background {
+#flat-background {
   background-size: 400% 400%;
   animation: gradient 30s ease infinite;
-  height: 100%;
 }
 
 @keyframes gradient {

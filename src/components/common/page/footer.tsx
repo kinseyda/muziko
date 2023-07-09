@@ -3,9 +3,11 @@ import { RootState } from "../../../store";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as MuzikoIcon } from "../../../resources/Muziko-logo.svg";
 import { ReactComponent as SpotifyIcon } from "../../../resources/spotify/icons/icon.svg";
+import { routes } from "../../../routes";
 
 export default function Footer() {
-  const theme = useSelector((state: RootState) => state.settings.theme);
+  const language = useSelector((state: RootState) => state.settings.language);
+
   return (
     <footer className="footer bg-base-300 gap-3 z-10 p-3 grid grid-cols-1 sm:grid-cols-3 items-center ">
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
@@ -15,11 +17,11 @@ export default function Footer() {
         <div className="flex flex-col justify-around gap-1">
           <div>Copyright © 2023 Muziko - Some rights reserved</div>
           <div className="flex flex-row">
-            <NavLink to="/about" className="link">
+            <NavLink to={routes.about.paths[language]} className="link">
               About Muziko
             </NavLink>
             <div className="divider divider-horizontal mx-1" />
-            <NavLink to="/legal" className="link">
+            <NavLink to={routes.legal.paths[language]} className="link">
               Legal Information
             </NavLink>
           </div>

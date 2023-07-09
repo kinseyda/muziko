@@ -1,17 +1,6 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
-import NavPage from "../../common/page/nav-page";
-import Centered from "../../common/centered";
-import { NavLink } from "react-router-dom";
-import Background from "./background/background";
-import { languages } from "../../../data/text/languages";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
-import {
-  F_PostStats,
-  F_TopicDoc,
-  F_UserStats,
-} from "../../../data/schema/firebase";
+import { F_PostStats, F_UserStats } from "../../../data/schema/firebase";
 import { useEffect, useState } from "react";
 import {
   ChatBubbleLeftRightIcon,

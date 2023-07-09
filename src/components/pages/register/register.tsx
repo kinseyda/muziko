@@ -6,6 +6,9 @@ import { XCircleIcon } from "@heroicons/react/24/outline";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import UserForm from "../../common/user-form";
+import { RootState } from "../../../store";
+import { useSelector } from "react-redux";
+import { routes } from "../../../routes";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -17,7 +20,9 @@ const loginSchema = Yup.object().shape({
 export default function Login() {
   const navigate = useNavigate();
   const [backendError, setBackendError] = useState("");
-
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
   return (
     <UserForm title="Register">
       <Formik
@@ -31,7 +36,7 @@ export default function Login() {
           )
             .then(() => {
               setSubmitting(false);
-              navigate("/login");
+              navigate("/");
             })
             .catch(() => {
               setSubmitting(false);
@@ -85,7 +90,10 @@ export default function Login() {
               <div className="card-actions justify-between align-middle items-center">
                 <span>
                   Have an account?{" "}
-                  <NavLink to="/login" className="link link-primary">
+                  <NavLink
+                    to={routes.login.paths[languageKey]}
+                    className="link link-primary"
+                  >
                     Log in
                   </NavLink>
                 </span>

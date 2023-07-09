@@ -34,6 +34,52 @@ export default function TopicDetails() {
   const languageKey = useSelector(
     (state: RootState) => state.settings.language
   );
+
+  function TrackDetails(props: { track: Track }) {
+    return (
+      <>
+        <div>
+          <div>
+            Released on: {props.track.releaseName} ({props.track.releaseDate})
+          </div>
+          <div>Track number: {props.track.posFraction}</div>
+          <div>Length: {props.track.duration}</div>
+        </div>
+        <div>More details go here</div>
+        <div>Even more details go here</div>
+      </>
+    );
+  }
+
+  function ReleaseDetails(props: { release: Release }) {
+    return (
+      <>
+        <div>Details go here</div>
+        <div>More details go here</div>
+        <div>Even more details go here</div>
+      </>
+    );
+  }
+
+  function ArtistDetails(props: { artist: Artist }) {
+    return (
+      <>
+        <div>Details go here</div>
+        <div>More details go here</div>
+        <div>Even more details go here</div>
+      </>
+    );
+  }
+
+  function DetailsSwitch(props: { topic: Topic }) {
+    if (props.topic instanceof Track)
+      return <TrackDetails track={props.topic} />;
+    if (props.topic instanceof Release)
+      return <ReleaseDetails release={props.topic} />;
+    if (props.topic instanceof Artist)
+      return <ArtistDetails artist={props.topic} />;
+    return <div>Error!</div>;
+  }
   const text = languages[languageKey].topicDetails;
   useEffect(() => {
     if (!topicURL || !token) {
@@ -65,40 +111,15 @@ export default function TopicDetails() {
         switch (topicType) {
           case "track":
             sValues = values as S_TrackObject;
-            setTopic(
-              new Track({
-                id: sValues.id,
-                name: sValues.name,
-                imageLink: sValues.album.images[0].url,
-                popularity: sValues.popularity || 0,
-                uri: sValues.uri,
-              })
-            );
+            setTopic(new Track(sValues));
             break;
           case "album":
             sValues = values as S_AlbumObject;
-            setTopic(
-              new Release({
-                id: sValues.id,
-                name: sValues.name,
-                imageLink: sValues.images[0].url,
-                popularity: sValues.popularity || 0,
-                uri: sValues.uri,
-                type: sValues.album_type,
-              })
-            );
+            setTopic(new Release(sValues));
             break;
           case "artist":
             sValues = values as S_ArtistObject;
-            setTopic(
-              new Artist({
-                id: sValues.id,
-                name: sValues.name,
-                imageLink: sValues.images[0].url,
-                popularity: sValues.popularity || 0,
-                uri: sValues.uri,
-              })
-            );
+            setTopic(new Artist(sValues));
             break;
         }
       };
@@ -123,10 +144,8 @@ export default function TopicDetails() {
         <div className="m-3">
           {topic instanceof Topic && (
             <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 ">
-              <img src={topic.imageLink} className=""></img>
-              <div>Details go here</div>
-              <div>More details go here</div>
-              <div>Even more details go here</div>
+              <img src={topic.imageLink} alt="Art" className=""></img>
+              <DetailsSwitch topic={topic} />
             </div>
           )}
           {topic === undefined && (

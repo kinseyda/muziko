@@ -29,9 +29,19 @@ interface S_ImageObject {
 export interface S_TrackObject extends S_Helper {
   album: {
     images: S_ImageObject[];
+    album_type: "album" | "single" | "compilation";
+    total_tracks: number;
+    name: string;
+    release_date: string;
+    release_date_precision: "year" | "month" | "day";
   };
+  artists: S_ArtistObject[];
   popularity?: number;
   uri: string;
+  track_number: number;
+  disc_number: number;
+  explicit: boolean;
+  duration_ms: number;
 }
 export interface S_AlbumObject extends S_Helper {
   album_type: string;
