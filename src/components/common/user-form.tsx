@@ -9,7 +9,9 @@ export default function UserForm(props: {
     <Page title={props.title}>
       <div className="h-full bg-base-200">
         <Centered>
-          <h2 className="mb-16 font-bold text-3xl">Muziko</h2>
+          <div className="prose">
+            <h2 className="mb-16 ">Muziko</h2>
+          </div>
           <div className="card w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <h2 className="card-title">{props.title}</h2>

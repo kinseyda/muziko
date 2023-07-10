@@ -1,12 +1,14 @@
 import {
-  UserIcon,
+  UserIcon as UserIconOutlined,
   ListBulletIcon,
   MusicalNoteIcon,
   PowerIcon,
   ArrowRightOnRectangleIcon,
   ArrowLeftOnRectangleIcon,
   UserPlusIcon,
+  Cog6ToothIcon,
 } from "@heroicons/react/24/outline";
+import { UserIcon as UserIconFilled } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import ThemeSwitch from "./theme-switch";
@@ -19,9 +21,9 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { Fragment, useState } from "react";
-import SettingsButton from "./settings-button";
 import { languages } from "../../../../data/text/languages";
 import { routes } from "../../../../routes";
+import LanguageSwitch from "./language-switch";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ export default function Navbar() {
   const text = languages[languageKey].navbar;
   return (
     <div className="navbar bg-base-300 gap-2 z-10">
-      <div className="flex-none tooltip tooltip-bottom" data-tip="Home">
+      <div className="flex-none tooltip tooltip-bottom" data-tip={text.home}>
         <NavLink
           to="/"
           className="hidden md:inline-flex btn btn-ghost normal-case text-xl"
@@ -49,7 +51,7 @@ export default function Navbar() {
           M
         </NavLink>
       </div>
-      <div className="tooltip tooltip-bottom" data-tip="Recommendations">
+      <div className="tooltip tooltip-bottom" data-tip={text.recommendations}>
         <NavLink
           to={{ pathname: routes.recommend.paths[languageKey] }}
           className="btn btn-ghost btn-circle rounded-full"
@@ -57,7 +59,7 @@ export default function Navbar() {
           <MusicalNoteIcon className="w-8" />
         </NavLink>
       </div>
-      <div className="tooltip tooltip-bottom" data-tip="Browse">
+      <div className="tooltip tooltip-bottom" data-tip={text.browse}>
         <NavLink
           to={{ pathname: routes.search.paths[languageKey] }}
           className="btn btn-ghost btn-circle rounded-full"
@@ -71,7 +73,9 @@ export default function Navbar() {
           name="navbarSearch"
           placeholder={text.search}
           className="flex-1 input input-bordered w-full"
-          disabled={location.pathname === routes.search.paths[languageKey]}
+          disabled={Object.values(routes.search.paths).includes(
+            location.pathname
+          )}
           onChange={(e) => setNavbarSearch(e.target.value)}
           onKeyUp={(e) => {
             if (e.key === "Enter") {
@@ -88,18 +92,42 @@ export default function Navbar() {
         />
       </div>
       <div>
-        <SettingsButton />
+        <div className="dropdown dropdown-end ">
+          <div className="tooltip tooltip-bottom" data-tip={text.settings}>
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle avatar transition transform focus:rotate-[30deg] "
+            >
+              <div className={`w-10 rounded-full `}>
+                <Cog6ToothIcon />
+              </div>
+            </label>
+          </div>
+          <ul
+            tabIndex={0}
+            className="mt-3 p-2 shadow menu menu-md dropdown-content bg-base-200 rounded-box w-64"
+          >
+            <li>
+              <ThemeSwitch />
+            </li>
+            <li>
+              <LanguageSwitch />
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="dropdown dropdown-end ">
-        <div className="tooltip tooltip-bottom" data-tip="User">
+        <div className="tooltip tooltip-bottom" data-tip={text.user}>
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div
-              className={`w-10 rounded-full outline ${
-                user ? "outline-primary" : "outline-neutral"
-              }`}
-            >
-              <UserIcon />
-            </div>
+            {user ? (
+              <div className="w-10 rounded-full outline outline-primary">
+                <UserIconFilled className="fill-primary" />
+              </div>
+            ) : (
+              <div className="w-10 rounded-full outline outline-neutral">
+                <UserIconOutlined />
+              </div>
+            )}
           </label>
         </div>
         <ul
@@ -108,14 +136,20 @@ export default function Navbar() {
         >
           {user ? (
             <>
+              <li className="w-full">
+                <span className="active w-full">
+                  Logged in as:{" "}
+                  <span className="truncate">{user.displayName}</span>
+                </span>
+              </li>
               <li>
                 <NavLink
-                  to="/profile"
+                  to={routes.profile.paths[languageKey]}
                   className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "" : ""
                   }
                 >
-                  <UserIcon className="w-4" /> Profile
+                  <UserIconOutlined className="w-4" /> Profile
                 </NavLink>
               </li>
               <li>

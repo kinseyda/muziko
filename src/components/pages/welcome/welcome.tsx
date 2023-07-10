@@ -18,11 +18,13 @@ export default function Welcome() {
     <NavPage title="">
       <Background>
         <Centered>
-          <div className="m-16 text-primary-content">
+          <div className="p-16 text-primary-content">
             {user ? (
-              <h2 className="text-3xl font-bold">
-                {text.userWelcome}, {user?.email}{" "}
-              </h2>
+              <div className="prose">
+                <h2 className=" text-primary-content">
+                  {text.userWelcome}, {user?.displayName}
+                </h2>
+              </div>
             ) : (
               <div className="items-center text-center flex flex-col gap-10">
                 <h2 className="text-5xl">{text.mainSlogan}</h2>
@@ -34,21 +36,13 @@ export default function Welcome() {
                     {text.joinButton}
                   </NavLink>
                 </div>
-                <p className="max-w-lg text-lg">
-                  <i>Muziko</i> is a platform that understands how much you love
-                  music, and how much you need to tell people about it. Using{" "}
-                  <i>Muziko</i>, you can learn more about an artist, their
-                  releases, or their tracks, and comment on them to a community
-                  of other music lovers.
-                  <br />
-                  <b>Discover your new favourite song today.</b>
-                </p>
+                <p className="max-w-lg text-lg">{text.blurb}</p>
                 <Stats />
                 <NavLink
                   to={routes.about.paths[languageKey]}
                   className="btn rounded-full btn-info"
                 >
-                  Learn more about <i>Muziko</i>
+                  {text.learnButton}
                 </NavLink>
               </div>
             )}

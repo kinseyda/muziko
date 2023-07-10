@@ -26,25 +26,34 @@ export default function ThemeSwitch() {
   return (
     <details>
       <summary>
-        <PaintBrushIcon className="w-4" /> Theme
+        <PaintBrushIcon className="w-4" /> {text.theme}
       </summary>
       <ul tabIndex={0} className="">
         <li>
-          <span onClick={() => setTheme("light")}>
+          <span
+            className={theme === "light" ? "active" : ""}
+            onClick={() => setTheme("light")}
+          >
             <SunIcon className="w-4" />
-            {text.light} {theme === "light" ? "✓" : ""}
+            {text.light}
           </span>
         </li>
         <li>
-          <span onClick={() => setTheme("dark")}>
+          <span
+            className={theme === "dark" ? "active" : ""}
+            onClick={() => setTheme("dark")}
+          >
             <MoonIcon className="w-4" />
-            {text.dark} {theme === "dark" ? "✓" : ""}
+            {text.dark}
           </span>
         </li>
         <li>
-          <span onClick={() => setTheme("oled")}>
+          <span
+            className={theme === "oled" ? "active" : ""}
+            onClick={() => setTheme("oled")}
+          >
             <BoltSlashIcon className="w-4" />
-            {text.oled} {theme === "oled" ? "✓" : ""}
+            {text.oled}
           </span>
         </li>
       </ul>

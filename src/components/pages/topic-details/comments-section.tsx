@@ -60,9 +60,11 @@ export default function CommentsSection(props: { topicId: string }) {
   }, []);
   return (
     <div>
-      <h2 className="m-3 text-3xl font-bold flex flex-row items-center gap-3">
-        <ChatBubbleLeftEllipsisIcon className="h-12" /> Comments
-      </h2>
+      <div className="prose">
+        <h2 className="m-3 flex flex-row items-center gap-3">
+          <ChatBubbleLeftEllipsisIcon className="h-12" /> Comments
+        </h2>
+      </div>
       <div className="m-3 flex justify-center gap-3 w-full items-center">
         <div className="w-full md:w-1/2">
           <Formik
@@ -80,7 +82,7 @@ export default function CommentsSection(props: { topicId: string }) {
                 time: curTime.toISOString(),
                 content: values.commentText,
                 userId: user.email,
-                userDisplayName: user.email,
+                userDisplayName: user.displayName,
               };
               const updateWith: { [time: number]: F_PostMap } = {};
               updateWith[curTime.getTime()] = post;

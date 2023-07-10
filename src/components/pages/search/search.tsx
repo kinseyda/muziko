@@ -175,7 +175,7 @@ export default function Search() {
               {text.searchFor}:{" "}
               {searchParams.get("query")
                 ? `"${searchParams.get("query")}"`
-                : "None"}
+                : text.emptyQueryTitle}
             </div>
           </h2>
           <div className="grow">
@@ -226,12 +226,12 @@ export default function Search() {
                     <li className="flex flex-row justify-center items-center gap-3">
                       <div className="form-control w-full ">
                         <label htmlFor="query" className="label">
-                          <span className="label-text">Search query</span>
+                          <span className="label-text">{text.queryLabel}</span>
                         </label>
                         <Field
                           type="text"
                           name="query"
-                          placeholder="Search query"
+                          placeholder={text.queryPlaceholder}
                           className={`input input-md input-bordered w-full ${
                             "query" in errors && "query" in touched
                               ? "input-error"
@@ -250,7 +250,7 @@ export default function Search() {
                     <li className="flex flex-row justify-center items-center gap-3">
                       <div className="form-control w-full gap-1">
                         <label htmlFor="atLeastOneRequired" className="label">
-                          <span className="label-text">Include:</span>
+                          <span className="label-text">{text.include}:</span>
                         </label>
                         <span className="flex gap-2 items-center">
                           <Field
@@ -259,7 +259,7 @@ export default function Search() {
                             className="toggle"
                             onClick={() => setFieldTouched("includes")}
                           />
-                          <span>Artists</span>
+                          <span>{text.artists}</span>
                         </span>
                         <span className="flex gap-2 items-center">
                           <Field
@@ -268,7 +268,7 @@ export default function Search() {
                             className="toggle"
                             onClick={() => setFieldTouched("includes")}
                           />
-                          <span>Releases</span>
+                          <span>{text.releases}</span>
                         </span>
                         <span className="flex gap-2 items-center">
                           <Field
@@ -277,7 +277,7 @@ export default function Search() {
                             className="toggle"
                             onClick={() => setFieldTouched("includes")}
                           />
-                          <span>Tracks</span>
+                          <span>{text.tracks}</span>
                         </span>
                         <ErrorMessage
                           name="includes"
@@ -299,7 +299,7 @@ export default function Search() {
                       }`}
                       onClick={submitForm}
                     >
-                      Search
+                      {text.search}
                     </button>
                   </div>
                 </Form>

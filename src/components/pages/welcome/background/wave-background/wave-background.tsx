@@ -42,9 +42,9 @@ export default function WaveBackground(props: { children: React.ReactNode }) {
     <div className="h-full">
       <canvas
         id="gradient-canvas"
-        className="absolute bottom-0 -z-50 h-full w-full bg-gradient-to-r from-secondary via-primary-focus to-info"
+        className="fixed bottom-0 -z-50 h-full w-full bg-gradient-to-r from-secondary via-primary-focus to-info"
       />
-      {props.children}
+      <div className=" backdrop-blur-lg h-full">{props.children}</div>
     </div>
   );
 }

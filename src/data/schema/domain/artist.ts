@@ -2,6 +2,8 @@ import { S_ArtistObject } from "../spotify";
 import Topic from "./topic";
 
 export class Artist extends Topic {
+  genres: string[];
+  followers: number;
   constructor(sArtist: S_ArtistObject) {
     super({
       id: sArtist.id,
@@ -10,5 +12,7 @@ export class Artist extends Topic {
       popularity: sArtist.popularity || 0,
       uri: sArtist.uri,
     });
+    this.genres = sArtist.genres;
+    this.followers = sArtist.followers.total;
   }
 }

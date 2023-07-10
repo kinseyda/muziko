@@ -64,7 +64,11 @@ export default function TopicDetails() {
   function ArtistDetails(props: { artist: Artist }) {
     return (
       <>
-        <div>Details go here</div>
+        <div>
+          <div>Popularity: {props.artist.popularity}/100</div>
+          <div>Followers: {props.artist.followers}</div>
+          <div>Genres: {props.artist.genres.join(", ")}</div>
+        </div>
         <div>More details go here</div>
         <div>Even more details go here</div>
       </>

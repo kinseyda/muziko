@@ -16,7 +16,8 @@ interface RouteObj {
   element: JSX.Element;
 }
 
-// Used to make multiple paths acceptable, ie you can go to equivalent urls in both english and french
+// Used to make multiple paths acceptable, ie you can go to equivalent urls in both English and French
+// Actual page content bilingualism is handled by React on the page components themselves, to ensure that content layout remains the same and easily maintainable.
 export const routes: { [routeName: string]: RouteObj } = {
   login: {
     paths: { English: "/login", Français: "/connexion" },
@@ -31,23 +32,23 @@ export const routes: { [routeName: string]: RouteObj } = {
     element: <Search />,
   },
   topic: {
-    paths: { English: "/topic", Français: "/TODO" },
+    paths: { English: "/topic", Français: "/sujet" },
     element: <TopicDetails />,
   },
   about: {
-    paths: { English: "/about", Français: "/TODO" },
+    paths: { English: "/about", Français: "/à-propos" },
     element: <About />,
   },
   legal: {
-    paths: { English: "/legal", Français: "/TODO" },
+    paths: { English: "/legal", Français: "/légale" },
     element: <Legal />,
   },
   recommend: {
-    paths: { English: "/recommend", Français: "/TODO" },
+    paths: { English: "/recommendations", Français: "/recommandations" },
     element: <Recommendations />,
   },
   profile: {
-    paths: { English: "/profile", Français: "/TODO" },
+    paths: { English: "/profile", Français: "/profil" },
     element: <Profile />,
   },
 };

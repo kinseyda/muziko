@@ -4,25 +4,29 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as MuzikoIcon } from "../../../resources/Muziko-logo.svg";
 import { ReactComponent as SpotifyIcon } from "../../../resources/spotify/icons/icon.svg";
 import { routes } from "../../../routes";
+import { languages } from "../../../data/text/languages";
 
 export default function Footer() {
-  const language = useSelector((state: RootState) => state.settings.language);
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].footer;
 
   return (
-    <footer className="footer bg-base-300 gap-3 z-10 p-3 grid grid-cols-1 sm:grid-cols-3 items-center ">
+    <footer className="footer bg-base-300 gap-3 z-10 p-3 grid grid-cols-1 sm:grid-cols-3 items-center max-w-full">
       <div className="col-span-1 flex flex-row gap-3 text-xs items-center">
         <NavLink to="/" className="h-12 w-12 aspect-square">
           <MuzikoIcon className="h-12 w-12 fill-current" />
         </NavLink>
         <div className="flex flex-col justify-around gap-1">
-          <div>Copyright © 2023 Muziko - Some rights reserved</div>
+          <div>{text.copyright}</div>
           <div className="flex flex-row">
-            <NavLink to={routes.about.paths[language]} className="link">
-              About Muziko
+            <NavLink to={routes.about.paths[languageKey]} className="link">
+              {text.about}
             </NavLink>
             <div className="divider divider-horizontal mx-1" />
-            <NavLink to={routes.legal.paths[language]} className="link">
-              Legal Information
+            <NavLink to={routes.legal.paths[languageKey]} className="link">
+              {text.legal}
             </NavLink>
           </div>
         </div>
@@ -70,11 +74,7 @@ export default function Footer() {
         <a href="https://open.spotify.com/" className="h-12 w-12 aspect-square">
           <SpotifyIcon className="h-12 w-12 fill-current" />
         </a>
-        <div className="">
-          Search and metadata functionality is provided courtesy of Spotify.
-          Content all belongs to artists and respective publishers. All rights
-          to their respective holders.
-        </div>
+        <div className="">{text.spotifyAttribution}</div>
       </div>
     </footer>
   );

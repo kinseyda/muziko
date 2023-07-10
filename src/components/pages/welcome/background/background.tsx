@@ -15,7 +15,7 @@ function detectWebgl(): boolean {
 }
 export default function Background(props: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className="h-full">
       {detectWebgl() ? (
         <WaveBackground>{props.children}</WaveBackground>
       ) : (

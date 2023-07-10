@@ -59,6 +59,8 @@ export interface S_ArtistObject extends S_Helper {
   images: S_ImageObject[];
   popularity?: number;
   uri: string;
+  followers: { total: number };
+  genres: string[];
 }
 
 // Following are not actually Spotify schema but are helpful

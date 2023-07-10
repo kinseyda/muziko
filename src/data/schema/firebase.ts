@@ -1,7 +1,13 @@
 export interface F_Collections {
   posts: { [topicId: string]: F_TopicDoc };
   stats: { users: F_UserStats; posts: F_PostStats };
+  users: { [userId: string]: F_User };
 }
+
+export interface F_User {
+  displayName: string;
+}
+
 export interface F_UserStats {
   count: number;
 }

@@ -7,6 +7,9 @@ import {
   HeartIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
+import { languages } from "../../../data/text/languages";
+import { RootState } from "../../../store";
+import { useSelector } from "react-redux";
 
 export default function Stats() {
   const [userStats, setUserStats] = useState(
@@ -32,6 +35,10 @@ export default function Stats() {
   useEffect(() => {
     fetchStats();
   }, []);
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].stats;
   return (
     <div>
       <div className="stats stats-vertical lg:stats-horizontal shadow">
@@ -39,7 +46,7 @@ export default function Stats() {
           <div className="stat-figure text-accent">
             <UserIcon className="inline-block w-8 h-8 stroke-current" />
           </div>
-          <div className="stat-title">Total Users</div>
+          <div className="stat-title">{text.totalUsers}</div>
           <div className="stat-value text-accent">{userStats?.count}</div>
         </div>
 
@@ -47,7 +54,7 @@ export default function Stats() {
           <div className="stat-figure text-primary">
             <ChatBubbleLeftRightIcon className="inline-block w-8 h-8 stroke-current" />
           </div>
-          <div className="stat-title">Conversations</div>
+          <div className="stat-title">{text.conversations}</div>
           <div className="stat-value text-primary">
             {postStats?.uniqueTopicCount}
           </div>
@@ -57,7 +64,7 @@ export default function Stats() {
           <div className="stat-figure text-secondary">
             <HeartIcon className="inline-block w-8 h-8 stroke-current" />
           </div>
-          <div className="stat-title">Discoveries Waiting</div>
+          <div className="stat-title">{text.discoveries}</div>
           <div className="stat-value text-secondary">∞</div>
         </div>
       </div>

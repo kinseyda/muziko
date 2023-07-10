@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { NavLink, useNavigate } from "react-router-dom";
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -9,9 +9,12 @@ import UserForm from "../../common/user-form";
 import { RootState } from "../../../store";
 import { useSelector } from "react-redux";
 import { routes } from "../../../routes";
+import { F_User } from "../../../data/schema/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
-const loginSchema = Yup.object().shape({
+const registerSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
+  displayName: Yup.string().required("Required"),
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Required"),
@@ -26,15 +29,18 @@ export default function Login() {
   return (
     <UserForm title="Register">
       <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={loginSchema}
+        initialValues={{ email: "", password: "", displayName: "" }}
+        validationSchema={registerSchema}
         onSubmit={(values, { setSubmitting }) => {
           createUserWithEmailAndPassword(
             auth,
             values["email"],
             values["password"]
           )
-            .then(() => {
+            .then((uc) => {
+              setDoc(doc(db, "users", uc.user.uid), {
+                displayName: values.displayName,
+              } as F_User);
               setSubmitting(false);
               navigate("/");
             })
@@ -61,6 +67,27 @@ export default function Login() {
                 <label className="label">
                   <ErrorMessage
                     name="email"
+                    component="div"
+                    className="label-text-alt text-error -mb-4"
+                  />
+                </label>
+              </div>
+              <div className="form-control w-full max-w-xs">
+                <label htmlFor="displayName" className="label">
+                  <span className="label-text">Display Name</span>
+                </label>
+                <Field
+                  type="displayName"
+                  name="displayName"
+                  className={`input input-bordered w-full max-w-xs ${
+                    "displayName" in errors && "displayName" in touched
+                      ? "input-error"
+                      : ""
+                  }`}
+                />
+                <label className="label">
+                  <ErrorMessage
+                    name="displayName"
                     component="div"
                     className="label-text-alt text-error -mb-4"
                   />
