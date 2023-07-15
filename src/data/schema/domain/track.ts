@@ -1,7 +1,7 @@
 import { S_TrackObject } from "../spotify";
-import Topic, { TopicParams } from "./topic";
+import Creation from "./creation";
 
-export class Track extends Topic {
+export class Track extends Creation {
   trackNumber: number;
   trackDenominator: number;
   releaseName: string;
@@ -15,6 +15,7 @@ export class Track extends Topic {
       name: sTrack.name,
       popularity: sTrack.popularity || 0,
       uri: sTrack.uri,
+      artists: sTrack.artists.map((x) => x.name),
     });
     this.trackNumber = sTrack.track_number;
     this.trackDenominator = sTrack.album.total_tracks;

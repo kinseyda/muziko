@@ -19,7 +19,7 @@ export default function Error() {
             <div className="card-body">
               <Centered>
                 <ExclamationTriangleIcon className="w-16 stroke-error" />
-                <div className="text-center">{text.fourOhFour}</div>
+                <h1 className="text-center">{text.fourOhFour}</h1>
               </Centered>
             </div>
           </div>

@@ -13,6 +13,7 @@ import { db } from "../../../firebase";
 import { RootState } from "../../../store";
 import Centered from "../../common/centered";
 import CommentBubble from "./comment-bubble";
+import { languages } from "../../../data/text/languages";
 
 function convertFirebasePostSchema(postObjs: F_TopicDoc, topicId: string) {
   const posts: Post[] = [];
@@ -58,11 +59,16 @@ export default function CommentsSection(props: { topicId: string }) {
   useEffect(() => {
     fetchPost();
   }, []);
+
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].commentsSection;
   return (
     <div>
       <div className="prose">
         <h2 className="m-3 flex flex-row items-center gap-3">
-          <ChatBubbleLeftEllipsisIcon className="h-12" /> Comments
+          <ChatBubbleLeftEllipsisIcon className="h-12" /> {text.comments}
         </h2>
       </div>
       <div className="m-3 flex justify-center gap-3 w-full items-center">
@@ -109,7 +115,7 @@ export default function CommentsSection(props: { topicId: string }) {
                         as="textarea"
                         name="commentText"
                         placeholder={
-                          user ? "Leave a comment" : "Log in to leave a comment"
+                          user ? text.leaveAComment : text.loginToComment
                         }
                         disabled={!user}
                         className={`textarea textarea-md textarea-bordered w-full ${
@@ -154,7 +160,7 @@ export default function CommentsSection(props: { topicId: string }) {
               <span className="loading loading-spinner w-16"></span>
             </Centered>
           )}
-          {errors === "No posts" && "No posts yet!"}
+          {errors === "No posts" && text.noPosts}
           {posts && posts.map((x) => <CommentBubble key={x.time} post={x} />)}
         </div>
       </div>

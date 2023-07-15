@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LanguageKey } from "./data/text/languages";
+import { LanguageKey, languages } from "./data/text/languages";
 
 export type ThemeKey = "dark" | "light" | "oled";
 
@@ -53,6 +53,9 @@ export const updateLanguage = createAsyncThunk(
   "settings/updateLanguage",
   (language: LanguageKey) => {
     localStorage.setItem("language", language);
+    document
+      .querySelector("html")
+      ?.setAttribute("lang", languages[language].code);
     return language;
   }
 );

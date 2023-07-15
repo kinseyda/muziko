@@ -1,6 +1,7 @@
 import { Language } from "./schema";
 
 export const french: Language = {
+  code: "fr",
   welcome: {
     mainSlogan: (
       <>
@@ -46,6 +47,9 @@ export const french: Language = {
     tracks: <>Pistes</>,
     releases: <>Albums</>,
     artists: <>Artistes</>,
+    noResults: (
+      <>Aucun résultat n'a été trouvé. Essayez de saisir une autre requête.</>
+    ),
   },
   topicCard: {
     details: <>Détails</>,
@@ -54,6 +58,8 @@ export const french: Language = {
     release: <>Album</>,
     artist: <>Artiste</>,
     artwork: "Ouvrages d'art",
+    by: <>Par</>,
+    and: "et",
   },
   navbar: {
     search: "Recherche",
@@ -62,6 +68,10 @@ export const french: Language = {
     browse: "Parcourir",
     settings: "Paramètres",
     user: "Utilisateur",
+    login: <>Connexion</>,
+    register: <>Enregister</>,
+    logout: <>Déconnexion</>,
+    profile: <>Profil</>,
   },
   themeSwitch: {
     theme: <>Thème</>,
@@ -94,8 +104,16 @@ export const french: Language = {
     loading: <>Chargement...</>,
     loadError: <>Erreur lors du chargement - l'URL est-elle correcte ?</>,
     parseError: <>URL invalide</>,
+    and: "et",
   },
   error: {
     fourOhFour: <>Une erreur s'est produite ! Cette URL n'existe pas.</>,
+  },
+  commentsSection: {
+    comments: <>Commentaires</>,
+    comment: <>Commentaire</>,
+    leaveAComment: "Laisser un commentaire",
+    loginToComment: "Se connecter pour laisser un commentaire",
+    noPosts: <>Aucun message n'a encore été publié !</>,
   },
 };

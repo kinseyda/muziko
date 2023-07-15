@@ -33,17 +33,6 @@ export default function App() {
     }
   });
 
-  const storedTheme = localStorage.getItem("theme");
-  if (
-    storedTheme === "dark" ||
-    storedTheme === "light" ||
-    storedTheme === "oled"
-  ) {
-    dispatch(updateTheme(storedTheme as ThemeKey));
-  } else {
-    dispatch(updateTheme("light"));
-  }
-
   return (
     <div className="App">
       <div id="page-container">

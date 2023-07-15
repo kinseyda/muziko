@@ -21,13 +21,13 @@ export default function Welcome() {
           <div className="p-16 text-primary-content">
             {user ? (
               <div className="prose">
-                <h2 className=" text-primary-content">
+                <h1 className=" text-primary-content">
                   {text.userWelcome}, {user?.displayName}
-                </h2>
+                </h1>
               </div>
             ) : (
               <div className="items-center text-center flex flex-col gap-10">
-                <h2 className="text-5xl">{text.mainSlogan}</h2>
+                <h1 className="text-5xl">{text.mainSlogan}</h1>
                 <div>
                   <NavLink
                     to={routes.register.paths[languageKey]}

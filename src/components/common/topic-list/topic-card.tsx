@@ -15,13 +15,25 @@ export default function TopicCard(props: { topic: Topic }) {
   const text = languages[languageKey].topicCard;
 
   function TrackContent(track: Track) {
-    return <div>{text.track}</div>;
+    return (
+      <>
+        <div>{text.track}</div>
+        <div>
+          {text.by} {track.artistString(text.and)}
+        </div>
+      </>
+    );
   }
   function ReleaseContent(release: Release) {
     return (
-      <div>
-        {text.release} ({release.type})
-      </div>
+      <>
+        <div>
+          {text.release} ({release.type})
+        </div>
+        <div>
+          {text.by} {release.artistString(text.and)}
+        </div>
+      </>
     );
   }
   function ArtistContent(artist: Artist) {

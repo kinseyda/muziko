@@ -44,6 +44,7 @@ export default function TopicDetails() {
           </div>
           <div>Track number: {props.track.posFraction}</div>
           <div>Length: {props.track.duration}</div>
+          <div>By: {props.track.artistString(text.and)}</div>
         </div>
         <div>More details go here</div>
         <div>Even more details go here</div>
@@ -133,7 +134,7 @@ export default function TopicDetails() {
   return (
     <NavPage title="Details">
       <div className="h-full flex flex-col m-3">
-        <h2 className="m-3 text-3xl font-bold flex content-center items-center">
+        <h1 className="m-3 text-3xl font-bold flex content-center items-center">
           {topic instanceof Topic && (
             <div>
               {topic.name} ({topic instanceof Track && text.track}
@@ -144,7 +145,7 @@ export default function TopicDetails() {
           {topic === undefined && text.loading}
           {topic === "parse" && text.parseError}
           {topic === "dne" && text.loadError}
-        </h2>
+        </h1>
         <div className="m-3">
           {topic instanceof Topic && (
             <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 ">

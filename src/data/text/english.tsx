@@ -1,6 +1,7 @@
 import { Language } from "./schema";
 
 export const english: Language = {
+  code: "en",
   welcome: {
     mainSlogan: (
       <>
@@ -43,6 +44,7 @@ export const english: Language = {
     tracks: <>Tracks</>,
     releases: <>Releases</>,
     artists: <>Artists</>,
+    noResults: <>No results found. Try entering a different query.</>,
   },
   topicCard: {
     details: <>Details</>,
@@ -51,6 +53,8 @@ export const english: Language = {
     release: <>Release</>,
     artist: <>Artist</>,
     artwork: "Artwork",
+    by: <>By</>,
+    and: "and",
   },
   navbar: {
     search: "Search",
@@ -59,6 +63,10 @@ export const english: Language = {
     browse: "Browse",
     settings: "Settings",
     user: "User",
+    login: <>Log in</>,
+    register: <>Register</>,
+    logout: <>Log out</>,
+    profile: <>Profile</>,
   },
   themeSwitch: {
     theme: <>Theme</>,
@@ -91,8 +99,16 @@ export const english: Language = {
     loading: <>Loading...</>,
     loadError: <>Error when loading - is the URL correct?</>,
     parseError: <>Invalid URL</>,
+    and: "and",
   },
   error: {
     fourOhFour: <>An error has occurred! This URL does not exist.</>,
+  },
+  commentsSection: {
+    comments: <>Comments</>,
+    comment: <>Comment</>,
+    leaveAComment: "Leave a comment",
+    loginToComment: "Log in to leave a comment",
+    noPosts: <>No posts yet!</>,
   },
 };

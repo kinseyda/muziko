@@ -14,7 +14,7 @@ import { fetchToken } from "../../../spotifySlice";
 import { AppDispatch, RootState } from "../../../store";
 import Centered from "../../common/centered";
 import NavPage from "../../common/page/nav-page";
-import TopicList from "./topic-list";
+import TopicList from "../../common/topic-list/topic-list";
 
 export function convertSpotifySearchSchema(values: S_SearchResponse): Topic[] {
   const topicAr: Topic[] = [];
@@ -66,7 +66,9 @@ export default function Search() {
   const token = useSelector((state: RootState) => state.spotify.accessToken);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [searchResults, setSearchResults] = useState([] as Topic[]);
+  const [searchResults, setSearchResults] = useState(
+    undefined as Topic[] | undefined
+  );
 
   const defaultIncludes = !(
     searchParams.get("includeArtists") ||
@@ -163,7 +165,7 @@ export default function Search() {
       <div className="drawer lg:drawer-open h-full">
         <input id="search-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
-          <h2 className="text-3xl font-bold flex content-center items-center m-3">
+          <div className="text-3xl font-bold flex content-center items-center m-3">
             <label
               htmlFor="search-drawer"
               className="btn btn-circle drawer-button lg:hidden"
@@ -171,21 +173,23 @@ export default function Search() {
               <AdjustmentsVerticalIcon className="h-8" />
             </label>
             <div className="m-3"></div>
-            <div>
+            <h1>
               {text.searchFor}:{" "}
               {searchParams.get("query")
                 ? `"${searchParams.get("query")}"`
                 : text.emptyQueryTitle}
-            </div>
-          </h2>
+            </h1>
+          </div>
           <div className="grow">
             {searchParams.get("query") ? (
-              searchResults?.length ? (
-                <TopicList topics={searchResults} />
-              ) : (
+              searchResults === undefined ? (
                 <Centered>
                   <span className="loading loading-spinner w-16"></span>
                 </Centered>
+              ) : searchResults.length ? (
+                <TopicList topics={searchResults} />
+              ) : (
+                <Centered>{text.noResults}</Centered>
               )
             ) : (
               <div className="m-5">{text.emptyQuery}</div>

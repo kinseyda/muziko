@@ -149,7 +149,7 @@ export default function Navbar() {
                     isPending ? "pending" : isActive ? "" : ""
                   }
                 >
-                  <UserIconOutlined className="w-4" /> Profile
+                  <UserIconOutlined className="w-4" /> {text.profile}
                 </NavLink>
               </li>
               <li>
@@ -164,7 +164,7 @@ export default function Navbar() {
                       )
                   }
                 >
-                  <ArrowLeftOnRectangleIcon className="w-4" /> Logout
+                  <ArrowLeftOnRectangleIcon className="w-4" /> {text.logout}
                 </button>
               </li>
             </>
@@ -172,12 +172,12 @@ export default function Navbar() {
             <>
               <li>
                 <NavLink to={routes.login.paths[languageKey]} className="">
-                  <ArrowRightOnRectangleIcon className="w-4" /> Log in
+                  <ArrowRightOnRectangleIcon className="w-4" /> {text.login}
                 </NavLink>
               </li>
               <li>
                 <NavLink to={routes.register.paths[languageKey]} className="">
-                  <UserPlusIcon className="w-4" /> Register
+                  <UserPlusIcon className="w-4" /> {text.register}
                 </NavLink>
               </li>
             </>

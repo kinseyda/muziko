@@ -8,7 +8,7 @@ export default function Legal() {
         <div className="prose">
           <div className="m-3 max-w-lg ">
             <h1>Legal Information</h1>
-            <h2>Data</h2>
+            <h2>Attributions</h2>
             <p className="">
               <i>Muziko</i>'s search and data functionality utilizes{" "}
               <a href="https://open.spotify.com/" className="link">
@@ -28,25 +28,21 @@ export default function Legal() {
               endorsed by Spotify, and should not be construed as being
               affiliated with Spotify in any way.
             </p>
-            <h2>Privacy</h2>
             <p>
-              <i>Muziko</i> is entirely open-source under the GPL version 3
-              license, except for a Firebase proxy function to ensure the
-              security of Spotify API keys. Source code can be found on{" "}
-              <a href="https://github.com/kinseyda/muziko" className="link">
-                GitHub
+              <i>Muziko</i> is created using{" "}
+              <a href="https://react.dev/" className="link">
+                React
               </a>
-              .
-            </p>
-            <p>
-              <i>Muziko</i> uses a Firestore database for the comments. No
-              personal information is stored other than users' email addresses.
-            </p>
-            <h2>Attributions</h2>
-            <p>
-              <i>Muziko</i> Is created using React, with Tailwind CSS and
-              daisyUI components. The incredible wave/gradient effect on the
-              welcome page is a deobfuscated version of the one on{" "}
+              , with{" "}
+              <a href="https://tailwindcss.com/" className="link">
+                Tailwind CSS
+              </a>{" "}
+              and{" "}
+              <a href="https://daisyui.com/" className="link">
+                daisyUI
+              </a>{" "}
+              components. The incredible wave/gradient effect on the welcome
+              page is a deobfuscated version of the one on{" "}
               <a href="stripe.com" className="link">
                 Stripe
               </a>
@@ -57,6 +53,27 @@ export default function Legal() {
                 className="link"
               >
                 website
+              </a>
+              .
+            </p>
+            <h2>Privacy</h2>
+            <p>
+              <i>Muziko</i> uses browser cookies to store your settings
+              preferences. This includes your chosen theme and language. These
+              cookies never leave the browser.
+            </p>
+            <p>
+              <i>Muziko</i> uses a Firestore database for the comments. No
+              personal information is stored other than users' email addresses.
+            </p>
+            <p>
+              <i>Muziko</i> is entirely open-source under the GPL version 3
+              license, except for some Firebase functions for the backend. These
+              are used to update the site statistics and to create a proxy for
+              the Spotify API, and are kept closed source to ensure the security
+              of the API key. Source code for the project can be found on{" "}
+              <a href="https://github.com/kinseyda/muziko" className="link">
+                GitHub
               </a>
               .
             </p>

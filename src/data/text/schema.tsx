@@ -1,5 +1,6 @@
 // Separated by page/component
 export interface Language {
+  code: string;
   welcome: WelcomeText;
   stats: StatsText;
   search: SearchText;
@@ -10,6 +11,7 @@ export interface Language {
   footer: FooterText;
   topicDetails: TopicDetailsText;
   error: ErrorText;
+  commentsSection: CommentsSectionText;
 }
 
 export interface WelcomeText {
@@ -37,6 +39,7 @@ export interface SearchText {
   tracks: JSX.Element;
   releases: JSX.Element;
   artists: JSX.Element;
+  noResults: JSX.Element;
 }
 
 export interface TopicCardText {
@@ -46,6 +49,8 @@ export interface TopicCardText {
   release: JSX.Element;
   artist: JSX.Element;
   artwork: string;
+  by: JSX.Element;
+  and: string;
 }
 
 export interface NavbarText {
@@ -55,6 +60,10 @@ export interface NavbarText {
   settings: string;
   user: string;
   search: string;
+  login: JSX.Element;
+  register: JSX.Element;
+  logout: JSX.Element;
+  profile: JSX.Element;
 }
 export interface ThemeSwitchText {
   theme: JSX.Element;
@@ -80,6 +89,7 @@ export interface TopicDetailsText {
   loading: JSX.Element;
   parseError: JSX.Element;
   loadError: JSX.Element;
+  and: string;
 }
 
 export interface ErrorText {
@@ -88,4 +98,12 @@ export interface ErrorText {
 
 export interface LanguageSwitchText {
   language: JSX.Element;
+}
+
+export interface CommentsSectionText {
+  comments: JSX.Element;
+  comment: JSX.Element;
+  leaveAComment: string;
+  loginToComment: string;
+  noPosts: JSX.Element;
 }
