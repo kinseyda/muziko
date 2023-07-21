@@ -14,6 +14,7 @@ import { RootState } from "../../../store";
 import Centered from "../../common/centered";
 import CommentBubble from "./comment-bubble";
 import { languages } from "../../../data/text/languages";
+import Paginated from "../../common/paginated";
 
 function convertFirebasePostSchema(postObjs: F_TopicDoc, topicId: string) {
   const posts: Post[] = [];
@@ -161,7 +162,14 @@ export default function CommentsSection(props: { topicId: string }) {
             </Centered>
           )}
           {errors === "No posts" && text.noPosts}
-          {posts && posts.map((x) => <CommentBubble key={x.time} post={x} />)}
+          {posts && (
+            <Paginated
+              pageSize={10}
+              contents={posts.map((x) => (
+                <CommentBubble key={x.time} post={x} />
+              ))}
+            />
+          )}
         </div>
       </div>
     </div>
