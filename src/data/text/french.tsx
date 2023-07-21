@@ -116,4 +116,20 @@ export const french: Language = {
     loginToComment: "Se connecter pour laisser un commentaire",
     noPosts: <>Aucun message n'a encore été publié !</>,
   },
+  recommendations: {
+    noResults: (
+      <>
+        Aucun résultat n'a été trouvé. Essayez de sélectionner d'autres genres.
+      </>
+    ),
+    emptyQuery: <>Sélectionnez quelques genres pour commencer.</>,
+    update: <>Actualise</>,
+    available: <>Genres Disponibles</>,
+    selected: <>Genres Sélectionnés</>,
+    error: (
+      <>
+        Aucun résultat n'a été trouvé. Essayez de sélectionner d'autres genres.
+      </>
+    ),
+  },
 };

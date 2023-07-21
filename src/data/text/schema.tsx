@@ -12,6 +12,7 @@ export interface Language {
   topicDetails: TopicDetailsText;
   error: ErrorText;
   commentsSection: CommentsSectionText;
+  recommendations: RecommendationsText;
 }
 
 export interface WelcomeText {
@@ -106,4 +107,13 @@ export interface CommentsSectionText {
   leaveAComment: string;
   loginToComment: string;
   noPosts: JSX.Element;
+}
+
+export interface RecommendationsText {
+  noResults: JSX.Element;
+  emptyQuery: JSX.Element;
+  update: JSX.Element;
+  available: JSX.Element;
+  selected: JSX.Element;
+  error: JSX.Element;
 }

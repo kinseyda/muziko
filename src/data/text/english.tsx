@@ -111,4 +111,12 @@ export const english: Language = {
     loginToComment: "Log in to leave a comment",
     noPosts: <>No posts yet!</>,
   },
+  recommendations: {
+    noResults: <>No results found. Try selecting different genres.</>,
+    emptyQuery: <>Select some genres to get started.</>,
+    update: <>Update</>,
+    available: <>Available Genres</>,
+    selected: <>Selected Genres</>,
+    error: <>No results found. Try selecting different genres.</>,
+  },
 };

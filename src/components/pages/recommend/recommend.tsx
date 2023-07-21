@@ -7,16 +7,18 @@ import {
   AdjustmentsVerticalIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { Form, Formik } from "formik";
+import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { S_TrackObject } from "../../../data/schema/spotify";
 import { Track } from "../../../data/schema/domain/track";
 import TopicList from "../../common/topic-list/topic-list";
 import Centered from "../../common/centered";
-import { trace } from "console";
-
+import { languages } from "../../../data/text/languages";
 const recommendationsSchema = Yup.object().shape({
-  genres: Yup.array().of(Yup.string()),
+  genres: Yup.array()
+    .of(Yup.string())
+    .max(5, "A maximum of 5 genres can be selected")
+    .min(1, "A minimum of 1 genre can be selected"),
 });
 
 type SidebarParams = Yup.InferType<typeof recommendationsSchema>;
@@ -25,10 +27,16 @@ export default function Recommendations() {
   const [genres, setGenres] = useState([] as string[]);
   const dispatch = useDispatch<AppDispatch>();
   const [recommendationResults, setRecommendationResults] = useState(
-    undefined as Track[] | undefined
+    undefined as Track[] | undefined | "loading" | "error"
   );
 
+  const languageKey = useSelector(
+    (state: RootState) => state.settings.language
+  );
+  const text = languages[languageKey].recommendations;
+
   async function updateRecs(values: SidebarParams) {
+    setRecommendationResults("loading");
     const result = (await (
       await fetch(
         "https://api.spotify.com/v1/recommendations?" +
@@ -43,6 +51,7 @@ export default function Recommendations() {
     ).json()) as { tracks?: S_TrackObject[] };
     if (result.tracks)
       setRecommendationResults(result.tracks.map((x) => new Track(x)));
+    else setRecommendationResults("error");
   }
 
   useEffect(() => {
@@ -85,14 +94,20 @@ export default function Recommendations() {
             <h1>Recommendations</h1>
           </div>
           <div className="grow">
-            {recommendationResults === undefined ? (
-              <Centered>
-                <span className="loading loading-spinner w-16"></span>
-              </Centered>
-            ) : recommendationResults.length ? (
-              <TopicList topics={recommendationResults} />
+            {recommendationResults !== undefined ? (
+              recommendationResults === "loading" ? (
+                <Centered>
+                  <span className="loading loading-spinner w-16"></span>
+                </Centered>
+              ) : recommendationResults === "error" ? (
+                <div className="m-5">{text.error}</div>
+              ) : recommendationResults.length ? (
+                <TopicList topics={recommendationResults} />
+              ) : (
+                <Centered>{text.noResults}</Centered>
+              )
             ) : (
-              <Centered>No results found.</Centered>
+              <div className="m-5">{text.emptyQuery}</div>
             )}
           </div>
         </div>
@@ -105,7 +120,10 @@ export default function Recommendations() {
             <Formik
               initialValues={{ genres: [] as string[] }}
               validationSchema={recommendationsSchema}
-              onSubmit={() => {}}
+              onSubmit={(values, { setSubmitting }) => {
+                updateRecs(values);
+                setSubmitting(false);
+              }}
             >
               {({
                 isSubmitting,
@@ -119,30 +137,39 @@ export default function Recommendations() {
                   <div className="flex flex-col">
                     <li className="flex flex-row justify-center items-center gap-3">
                       <div className="form-control w-full ">
-                        <label htmlFor="query" className="label">
-                          <span className="label-text">Selected Genres</span>
+                        <label htmlFor="selected" className="label">
+                          <span className="label-text">{text.selected}</span>
                         </label>
-                        <div className="flex gap-1 flex-wrap justify-center max-h-80 overflow-scroll">
-                          {values.genres.map((x) => (
-                            <button
-                              key={x}
-                              className="btn btn-xs btn-outline"
-                              onClick={() =>
-                                values.genres.splice(
-                                  values.genres.indexOf(x),
-                                  1
-                                )
-                              }
-                              type="submit"
-                            >
-                              {x} <XMarkIcon className="h-4" />
-                            </button>
-                          ))}
+                        <div className="mb-4">
+                          <div className="flex gap-1 flex-wrap justify-center max-h-80 p-1 overflow-scroll">
+                            {values.genres.map((x) => (
+                              <button
+                                key={x}
+                                className="btn btn-xs btn-outline"
+                                onClick={() =>
+                                  values.genres.splice(
+                                    values.genres.indexOf(x),
+                                    1
+                                  )
+                                }
+                                type="submit"
+                              >
+                                {x} <XMarkIcon className="h-4" />
+                              </button>
+                            ))}
+                          </div>
+                          <div className="w-full flex justify-end">
+                            <ErrorMessage
+                              name="genres"
+                              component="div"
+                              className="label-text-alt text-error -mb-4"
+                            />
+                          </div>
                         </div>
                         <label htmlFor="query" className="label">
-                          <span className="label-text">Available Genres</span>
+                          <span className="label-text">{text.available}</span>
                         </label>
-                        <div className="flex gap-1 flex-wrap justify-center max-h-80 overflow-scroll">
+                        <div className="flex gap-1 flex-wrap justify-center max-h-80 p-1 overflow-scroll">
                           {genres
                             .filter((x) => !values.genres.includes(x))
                             .map((x) => (
@@ -160,15 +187,6 @@ export default function Recommendations() {
                         </div>
                       </div>
                     </li>
-                  </div>
-                  <div className="w-full flex justify-end">
-                    <button
-                      className={`btn btn-primary`}
-                      onClick={() => updateRecs(values)}
-                      type="submit"
-                    >
-                      Update
-                    </button>
                   </div>
                 </Form>
               )}
