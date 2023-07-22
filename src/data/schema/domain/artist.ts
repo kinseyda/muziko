@@ -11,6 +11,7 @@ export class Artist extends Topic {
       name: sArtist.name,
       popularity: sArtist.popularity || 0,
       uri: sArtist.uri,
+      url: sArtist.external_urls.spotify,
     });
     this.genres = sArtist.genres;
     this.followers = sArtist.followers.total;

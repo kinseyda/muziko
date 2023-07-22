@@ -7,6 +7,7 @@ import {
   ArrowLeftOnRectangleIcon,
   UserPlusIcon,
   Cog6ToothIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { UserIcon as UserIconFilled } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
@@ -24,6 +25,7 @@ import { Fragment, useState } from "react";
 import { languages } from "../../../../data/text/languages";
 import { routes } from "../../../../routes";
 import LanguageSwitch from "./language-switch";
+import SettingsButton from "../../settings-button";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -59,12 +61,12 @@ export default function Navbar() {
           <MusicalNoteIcon className="w-8" />
         </NavLink>
       </div>
-      <div className="tooltip tooltip-bottom" data-tip={text.browse}>
+      <div className="tooltip tooltip-bottom" data-tip={text.search}>
         <NavLink
           to={{ pathname: routes.search.paths[languageKey] }}
           className="btn btn-ghost btn-circle rounded-full"
         >
-          <ListBulletIcon className="w-8" />
+          <MagnifyingGlassIcon className="w-8" />
         </NavLink>
       </div>
       <div className="flex-1">
@@ -92,29 +94,7 @@ export default function Navbar() {
         />
       </div>
       <div>
-        <div className="dropdown dropdown-end ">
-          <div className="tooltip tooltip-bottom" data-tip={text.settings}>
-            <label
-              tabIndex={0}
-              className="btn btn-ghost btn-circle avatar transition transform focus:rotate-[30deg] "
-            >
-              <div className={`w-10 rounded-full `}>
-                <Cog6ToothIcon />
-              </div>
-            </label>
-          </div>
-          <ul
-            tabIndex={0}
-            className="mt-3 p-2 shadow menu menu-md dropdown-content bg-base-200 rounded-box w-64"
-          >
-            <li>
-              <ThemeSwitch />
-            </li>
-            <li>
-              <LanguageSwitch />
-            </li>
-          </ul>
-        </div>
+        <SettingsButton />
       </div>
       <div className="dropdown dropdown-end ">
         <div className="tooltip tooltip-bottom" data-tip={text.user}>

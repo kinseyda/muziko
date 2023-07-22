@@ -12,6 +12,7 @@ export default class Release extends Creation {
       name: sAlbum.name,
       popularity: sAlbum.popularity || 0,
       uri: sAlbum.uri,
+      url: sAlbum.external_urls.spotify,
       artists: sAlbum.artists.map((x) => x.name),
     });
     this.type = sAlbum.album_type;

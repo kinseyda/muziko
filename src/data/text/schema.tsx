@@ -6,6 +6,7 @@ export interface Language {
   search: SearchText;
   topicCard: TopicCardText;
   navbar: NavbarText;
+  settings: SettingsText;
   themeSwitch: ThemeSwitchText;
   languageSwitch: LanguageSwitchText;
   footer: FooterText;
@@ -13,6 +14,9 @@ export interface Language {
   error: ErrorText;
   commentsSection: CommentsSectionText;
   recommendations: RecommendationsText;
+  legal: LegalText;
+  login: LoginText;
+  register: RegisterText;
 }
 
 export interface WelcomeText {
@@ -51,14 +55,12 @@ export interface TopicCardText {
   artist: JSX.Element;
   artwork: string;
   by: JSX.Element;
-  and: string;
+  artistString: (artists: string[]) => JSX.Element;
 }
 
 export interface NavbarText {
   home: string;
   recommendations: string;
-  browse: string;
-  settings: string;
   user: string;
   search: string;
   login: JSX.Element;
@@ -66,6 +68,10 @@ export interface NavbarText {
   logout: JSX.Element;
   profile: JSX.Element;
 }
+export interface SettingsText {
+  settings: string;
+}
+
 export interface ThemeSwitchText {
   theme: JSX.Element;
   dark: JSX.Element;
@@ -90,7 +96,15 @@ export interface TopicDetailsText {
   loading: JSX.Element;
   parseError: JSX.Element;
   loadError: JSX.Element;
-  and: string;
+  viewOnSpotify: (topicName: string) => JSX.Element;
+  artistString: (artists: string[]) => JSX.Element;
+  explicit: JSX.Element;
+  releasedOn: JSX.Element;
+  trackNumber: JSX.Element;
+  by: JSX.Element;
+  length: JSX.Element;
+  followers: JSX.Element;
+  genres: JSX.Element;
 }
 
 export interface ErrorText {
@@ -110,10 +124,33 @@ export interface CommentsSectionText {
 }
 
 export interface RecommendationsText {
+  recommendations: string;
   noResults: JSX.Element;
   emptyQuery: JSX.Element;
-  update: JSX.Element;
   available: JSX.Element;
   selected: JSX.Element;
   error: JSX.Element;
+}
+
+export interface LegalText {
+  legalInfo: string;
+  prose: JSX.Element;
+}
+
+export interface LoginText {
+  login: string;
+  email: JSX.Element;
+  password: JSX.Element;
+  newToMuziko: JSX.Element;
+  register: JSX.Element;
+  loginButton: JSX.Element;
+}
+
+export interface RegisterText {
+  register: string;
+  email: JSX.Element;
+  password: JSX.Element;
+  displayName: JSX.Element;
+  haveAnAccount: JSX.Element;
+  login: JSX.Element;
 }

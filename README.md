@@ -19,8 +19,21 @@ The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
 ## To-do list
+
 ### Features
-- Threaded replies
-- Follow/like topics to access them easily. Add these to the recommendation system.
+
+- Threaded replies.
+- Follow/like topics to access them easily. Add these to the recommendation
+  system.
+- Profile / account management page
+
 ### Improvements
-- More detailed topic pages
+
+- More detailed topic pages.
+- Replace all remaining hardcoded English text (including validation error
+  messages).
+- About page.
+
+### Behind the scenes
+
+- Improve domain class construction with factory methods.

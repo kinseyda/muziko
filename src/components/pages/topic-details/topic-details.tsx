@@ -17,6 +17,7 @@ import { Artist } from "../../../data/schema/domain/artist";
 import { languages } from "../../../data/text/languages";
 import Centered from "../../common/centered";
 import CommentsSection from "./comments-section";
+import { ReactComponent as SpotifyLogo } from "../../../resources/spotify/logos/logo.svg";
 
 const uriRegExp = /spotify:(?<type>(?:track|album|artist)):(?<id>\w*)/;
 
@@ -40,14 +41,25 @@ export default function TopicDetails() {
       <>
         <div>
           <div>
-            Released on: {props.track.releaseName} ({props.track.releaseDate})
+            <i>{props.track.name}</i>{" "}
+            {props.track.explicit && <>({text.explicit})</>}
           </div>
-          <div>Track number: {props.track.posFraction}</div>
-          <div>Length: {props.track.duration}</div>
-          <div>By: {props.track.artistString(text.and)}</div>
+          <div>
+            {text.releasedOn}: {props.track.releaseName} (
+            {props.track.releaseDate})
+          </div>
+          <div>
+            {text.trackNumber}: {props.track.posFraction}
+          </div>
+          <div>
+            {text.length}: {props.track.duration}
+          </div>
+          <div>
+            {text.by}: {text.artistString(props.track.artists)}
+          </div>
         </div>
-        <div>More details go here</div>
-        <div>Even more details go here</div>
+        {/* <div>More details go here</div> */}
+        {/* <div>Even more details go here</div> */}
       </>
     );
   }
@@ -55,9 +67,16 @@ export default function TopicDetails() {
   function ReleaseDetails(props: { release: Release }) {
     return (
       <>
-        <div>Details go here</div>
-        <div>More details go here</div>
-        <div>Even more details go here</div>
+        <div>
+          <div>
+            <i>{props.release.name}</i>
+          </div>
+          <div>
+            {text.by}: {text.artistString(props.release.artists)}
+          </div>
+        </div>
+        {/* <div>More details go here</div> */}
+        {/* <div>Even more details go here</div> */}
       </>
     );
   }
@@ -66,12 +85,18 @@ export default function TopicDetails() {
     return (
       <>
         <div>
-          <div>Popularity: {props.artist.popularity}/100</div>
-          <div>Followers: {props.artist.followers}</div>
-          <div>Genres: {props.artist.genres.join(", ")}</div>
+          <div>
+            {text.popularity}: {props.artist.popularity}/100
+          </div>
+          <div>
+            {text.followers}: {props.artist.followers}
+          </div>
+          <div>
+            {text.genres}: {props.artist.genres.join(", ")}
+          </div>
         </div>
-        <div>More details go here</div>
-        <div>Even more details go here</div>
+        {/* <div>More details go here</div> */}
+        {/* <div>Even more details go here</div> */}
       </>
     );
   }
@@ -148,10 +173,20 @@ export default function TopicDetails() {
         </h1>
         <div className="m-3">
           {topic instanceof Topic && (
-            <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 ">
-              <img src={topic.imageLink} alt="Art" className=""></img>
-              <DetailsSwitch topic={topic} />
-            </div>
+            <>
+              <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 ">
+                <img src={topic.imageLink} alt="Art" className=""></img>
+                <DetailsSwitch topic={topic} />
+              </div>
+              <div className="w-full flex justify-end">
+                <a href={topic.url} className="flex flex-col gap-1 ">
+                  <span className="w-full flex justify-end">
+                    <SpotifyLogo className="w-48 h-fit fill-current" />
+                  </span>
+                  <span className="link">{text.viewOnSpotify(topic.name)}</span>
+                </a>
+              </div>
+            </>
           )}
           {topic === undefined && (
             <Centered>

@@ -9,6 +9,7 @@ import UserForm from "../../common/user-form";
 import { routes } from "../../../routes";
 import { RootState } from "../../../store";
 import { useSelector } from "react-redux";
+import { languages } from "../../../data/text/languages";
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -23,8 +24,9 @@ export default function Login() {
   const languageKey = useSelector(
     (state: RootState) => state.settings.language
   );
+  const text = languages[languageKey].login;
   return (
-    <UserForm title="Log in">
+    <UserForm title={text.login}>
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
@@ -42,10 +44,10 @@ export default function Login() {
       >
         {({ isSubmitting, errors, touched }) => (
           <Form>
-            <div className="">
+            <div>
               <div className="form-control w-full max-w-xs">
                 <label htmlFor="email" className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">{text.email}</span>
                 </label>
                 <Field
                   type="email"
@@ -64,7 +66,7 @@ export default function Login() {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label htmlFor="password" className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">{text.password}</span>
                 </label>
                 <Field
                   type="password"
@@ -85,24 +87,25 @@ export default function Login() {
               </div>
               <div className="card-actions justify-between align-middle items-center">
                 <span>
-                  New to Muziko?{" "}
+                  {text.newToMuziko}{" "}
                   <NavLink
                     to={routes.register.paths[languageKey]}
                     className="link link-primary"
                   >
-                    Register
+                    {text.register}
                   </NavLink>
                 </span>
-
-                <button
-                  className={`btn ${
-                    Object.keys(errors).length || isSubmitting
-                      ? "btn-disabled"
-                      : "btn-primary"
-                  }`}
-                >
-                  Log in
-                </button>
+                <div className="w-full flex justify-end">
+                  <button
+                    className={`btn ${
+                      Object.keys(errors).length || isSubmitting
+                        ? "btn-disabled"
+                        : "btn-primary"
+                    }`}
+                  >
+                    {text.loginButton}
+                  </button>
+                </div>
               </div>
               {backendError ? (
                 <div className="my-5">

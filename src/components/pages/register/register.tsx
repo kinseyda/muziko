@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { routes } from "../../../routes";
 import { F_User } from "../../../data/schema/firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { languages } from "../../../data/text/languages";
 
 const registerSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -26,8 +27,9 @@ export default function Login() {
   const languageKey = useSelector(
     (state: RootState) => state.settings.language
   );
+  const text = languages[languageKey].register;
   return (
-    <UserForm title="Register">
+    <UserForm title={text.register}>
       <Formik
         initialValues={{ email: "", password: "", displayName: "" }}
         validationSchema={registerSchema}
@@ -55,7 +57,7 @@ export default function Login() {
             <div className="">
               <div className="form-control w-full max-w-xs">
                 <label htmlFor="email" className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text">{text.email}</span>
                 </label>
                 <Field
                   type="email"
@@ -74,7 +76,7 @@ export default function Login() {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label htmlFor="displayName" className="label">
-                  <span className="label-text">Display Name</span>
+                  <span className="label-text">{text.displayName}</span>
                 </label>
                 <Field
                   type="displayName"
@@ -95,7 +97,7 @@ export default function Login() {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label htmlFor="password" className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text">{text.password}</span>
                 </label>
                 <Field
                   type="password"
@@ -116,23 +118,25 @@ export default function Login() {
               </div>
               <div className="card-actions justify-between align-middle items-center">
                 <span>
-                  Have an account?{" "}
+                  {text.haveAnAccount}{" "}
                   <NavLink
                     to={routes.login.paths[languageKey]}
                     className="link link-primary"
                   >
-                    Log in
+                    {text.login}
                   </NavLink>
                 </span>
-                <button
-                  className={`btn ${
-                    Object.keys(errors).length || isSubmitting
-                      ? "btn-disabled"
-                      : "btn-primary"
-                  }`}
-                >
-                  Register
-                </button>
+                <div className="w-full flex justify-end">
+                  <button
+                    className={`btn ${
+                      Object.keys(errors).length || isSubmitting
+                        ? "btn-disabled"
+                        : "btn-primary"
+                    }`}
+                  >
+                    {text.register}
+                  </button>
+                </div>
               </div>
               {backendError ? (
                 <div className="my-5">

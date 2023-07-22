@@ -4,6 +4,7 @@ export interface TopicParams {
   imageLink: string;
   popularity: number;
   uri: string;
+  url: string;
 }
 
 export default abstract class Topic {
@@ -12,6 +13,7 @@ export default abstract class Topic {
   imageLink: string;
   popularity: number;
   uri: string;
+  url: string;
 
   constructor(params: TopicParams) {
     this.id = params.id;
@@ -19,5 +21,6 @@ export default abstract class Topic {
     this.imageLink = params.imageLink;
     this.popularity = params.popularity;
     this.uri = params.uri;
+    this.url = params.url;
   }
 }

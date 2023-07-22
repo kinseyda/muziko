@@ -20,35 +20,47 @@ interface RouteObj {
 // Actual page content bilingualism is handled by React on the page components themselves, to ensure that content layout remains the same and easily maintainable.
 export const routes: { [routeName: string]: RouteObj } = {
   login: {
-    paths: { English: "/login", Français: "/connexion" },
+    paths: {
+      English: "/login",
+      Français: "/connexion",
+      Esperanto: "/ensaluti",
+    },
     element: <Login />,
   },
   register: {
-    paths: { English: "/register", Français: "/enregister" },
+    paths: {
+      English: "/register",
+      Français: "/enregister",
+      Esperanto: "/registri",
+    },
     element: <Register />,
   },
   search: {
-    paths: { English: "/search", Français: "/recherche" },
+    paths: { English: "/search", Français: "/recherche", Esperanto: "/serĉi" },
     element: <Search />,
   },
   topic: {
-    paths: { English: "/topic", Français: "/sujet" },
+    paths: { English: "/topic", Français: "/sujet", Esperanto: "/temo" },
     element: <TopicDetails />,
   },
   about: {
-    paths: { English: "/about", Français: "/à-propos" },
+    paths: { English: "/about", Français: "/à-propos", Esperanto: "/pri" },
     element: <About />,
   },
   legal: {
-    paths: { English: "/legal", Français: "/légale" },
+    paths: { English: "/legal", Français: "/légale", Esperanto: "/jura" },
     element: <Legal />,
   },
   recommend: {
-    paths: { English: "/recommendations", Français: "/recommandations" },
+    paths: {
+      English: "/recommendations",
+      Français: "/recommandations",
+      Esperanto: "/rekomendoj",
+    },
     element: <Recommendations />,
   },
   profile: {
-    paths: { English: "/profile", Français: "/profil" },
+    paths: { English: "/profile", Français: "/profil", Esperanto: "/profilo" },
     element: <Profile />,
   },
 };

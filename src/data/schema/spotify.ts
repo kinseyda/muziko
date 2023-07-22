@@ -67,6 +67,7 @@ interface S_Helper {
   id: string;
   name: string;
   uri: string;
+  external_urls: { spotify: string };
 }
 export type S_Topic = S_ArtistObject | S_AlbumObject | S_TrackObject;
 export type S_SearchTopic =

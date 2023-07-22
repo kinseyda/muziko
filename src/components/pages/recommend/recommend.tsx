@@ -75,7 +75,7 @@ export default function Recommendations() {
     }
   }, [token]);
   return (
-    <NavPage title="Recommendations">
+    <NavPage title={text.recommendations}>
       <div className="drawer lg:drawer-open h-full">
         <input
           id="recommendations-drawer"
@@ -91,7 +91,7 @@ export default function Recommendations() {
               <AdjustmentsVerticalIcon className="h-8" />
             </label>
             <div className="m-3"></div>
-            <h1>Recommendations</h1>
+            <h1>{text.recommendations}</h1>
           </div>
           <div className="grow">
             {recommendationResults !== undefined ? (

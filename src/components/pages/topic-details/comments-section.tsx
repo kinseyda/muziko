@@ -66,13 +66,13 @@ export default function CommentsSection(props: { topicId: string }) {
   );
   const text = languages[languageKey].commentsSection;
   return (
-    <div>
+    <div className="w-full">
       <div className="prose">
         <h2 className="m-3 flex flex-row items-center gap-3">
           <ChatBubbleLeftEllipsisIcon className="h-12" /> {text.comments}
         </h2>
       </div>
-      <div className="m-3 flex justify-center gap-3 w-full items-center">
+      <div className="w-full flex justify-center gap-3 items-center">
         <div className="w-full md:w-1/2">
           <Formik
             initialValues={{ commentText: "" }}
@@ -106,7 +106,7 @@ export default function CommentsSection(props: { topicId: string }) {
             {({ isSubmitting, errors, touched }) => (
               <Form>
                 <div className="flex flex-col">
-                  <div className="flex flex-row justify-center items-center gap-3">
+                  <div className="flex flex-col justify-center items-center gap-3">
                     <div className="form-control w-full ">
                       <label htmlFor="commentText" className="label">
                         <span className="label-text">Comment</span>
@@ -133,16 +133,18 @@ export default function CommentsSection(props: { topicId: string }) {
                         />
                       </label>
                     </div>
-                    <button
-                      type="submit"
-                      className={`btn ${
-                        !user || Object.keys(errors).length || isSubmitting
-                          ? "btn-disabled"
-                          : "btn-primary"
-                      }`}
-                    >
-                      Post
-                    </button>
+                    <div className="w-full flex justify-end">
+                      <button
+                        type="submit"
+                        className={`btn ${
+                          !user || Object.keys(errors).length || isSubmitting
+                            ? "btn-disabled"
+                            : "btn-primary"
+                        }`}
+                      >
+                        Post
+                      </button>
+                    </div>
                   </div>
                   {backendError && (
                     <div className="my-5">

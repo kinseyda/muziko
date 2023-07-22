@@ -19,7 +19,7 @@ export default function TopicCard(props: { topic: Topic }) {
       <>
         <div>{text.track}</div>
         <div>
-          {text.by} {track.artistString(text.and)}
+          {text.by} {text.artistString(track.artists)}
         </div>
       </>
     );
@@ -31,7 +31,7 @@ export default function TopicCard(props: { topic: Topic }) {
           {text.release} ({release.type})
         </div>
         <div>
-          {text.by} {release.artistString(text.and)}
+          {text.by} {text.artistString(release.artists)}
         </div>
       </>
     );
