@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.248442be.css",
-    "main.js": "./static/js/main.0c4faa53.js",
+    "main.css": "./static/css/main.f02460ed.css",
+    "main.js": "./static/js/main.800678e5.js",
     "static/js/787.b76f6aa5.chunk.js": "./static/js/787.b76f6aa5.chunk.js",
+    "static/media/logo.svg": "./static/media/logo.c0d74a257025bea75350d1979b68b024.svg",
     "static/media/icon.svg": "./static/media/icon.0364cfafb05e8456c249501018523462.svg",
     "static/media/Muziko-logo.svg": "./static/media/Muziko-logo.0f84ffc181935b12a1ec9876baf3bff2.svg",
     "index.html": "./index.html",
-    "main.248442be.css.map": "./static/css/main.248442be.css.map",
-    "main.0c4faa53.js.map": "./static/js/main.0c4faa53.js.map",
+    "main.f02460ed.css.map": "./static/css/main.f02460ed.css.map",
+    "main.800678e5.js.map": "./static/js/main.800678e5.js.map",
     "787.b76f6aa5.chunk.js.map": "./static/js/787.b76f6aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.248442be.css",
-    "static/js/main.0c4faa53.js"
+    "static/css/main.f02460ed.css",
+    "static/js/main.800678e5.js"
   ]
 }
